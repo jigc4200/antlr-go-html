@@ -25,7 +25,7 @@ estilo
     | TACHADO contenido FINTACHADO
     | SUBINDICE contenido FINSUBINDICE
     | SUPERINDICE contenido FINSUPERINDICE
-    | TAMANO ATTR_VAL contenido FINTAMANO   // Tamaño 14 texto FinTamaño
+    | TAMANO ATTR_VAL contenido FINTAMANO  
     ;
 
 formato
@@ -62,7 +62,7 @@ imagen
     ;
 
 encabezado
-    : ENCABEZADO ATTR_VAL contenido FINENCABEZADO  // Encabezado 2 ... FinEncabezado => <h2>
+    : ENCABEZADO ATTR_VAL contenido FINENCABEZADO  
     ;
 
 singleton
