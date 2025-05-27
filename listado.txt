@@ -1,0 +1,70 @@
+Token: Pagina, Tipo: 'Pagina', Posición: 0
+Token: Cabecera, Tipo: 'Cabecera', Posición: 11
+Token: Titulo, Tipo: 'Titulo', Posición: 28
+Token: "Bienvenido a la Página de Prueba Avanzada", Tipo: Desconocido, Posición: 35
+Token: FinTitulo, Tipo: 'FinTitulo', Posición: 79
+Token: FinCabecera, Tipo: 'FinCabecera', Posición: 99
+Token: Cuerpo, Tipo: 'Cuerpo', Posición: 120
+Token: Parrafo, Tipo: 'Parrafo', Posición: 135
+Token: Posicion, Tipo: 'Posicion', Posición: 143
+Token: centrada, Tipo: Desconocido, Posición: 152
+Token: FinPosicion, Tipo: 'FinPosicion', Posición: 161
+Token: "Este párrafo está centrado y contiene estilos mezclados:", Tipo: Desconocido, Posición: 173
+Token: FinParrafo, Tipo: 'FinParrafo', Posición: 232
+Token: Salto, Tipo: 'Salto', Posición: 251
+Token: Negrita, Tipo: 'Negrita', Posición: 265
+Token: "Texto negrita dentro del cuerpo", Tipo: Desconocido, Posición: 273
+Token: FinNegrita, Tipo: 'FinNegrita', Posición: 307
+Token: Salto, Tipo: 'Salto', Posición: 326
+Token: Cursiva, Tipo: 'Cursiva', Posición: 340
+Token: "Texto en cursiva para enfatizar", Tipo: Desconocido, Posición: 348
+Token: FinCursiva, Tipo: 'FinCursiva', Posición: 382
+Token: Salto, Tipo: 'Salto', Posición: 401
+Token: Subrayado, Tipo: 'Subrayado', Posición: 415
+Token: "Texto subrayado y importante", Tipo: Desconocido, Posición: 425
+Token: FinSubrayado, Tipo: 'FinSubrayado', Posición: 456
+Token: Lista, Tipo: 'Lista', Posición: 477
+Token: ElementoLista, Tipo: 'ElementoLista', Posición: 495
+Token: "Primer ítem con Negrita y Cursiva", Tipo: Desconocido, Posición: 509
+Token: Negrita, Tipo: 'Negrita', Posición: 562
+Token: "Negrita interna", Tipo: Desconocido, Posición: 570
+Token: FinNegrita, Tipo: 'FinNegrita', Posición: 588
+Token: Cursiva, Tipo: 'Cursiva', Posición: 615
+Token: "Cursiva interna", Tipo: Desconocido, Posición: 623
+Token: FinCursiva, Tipo: 'FinCursiva', Posición: 641
+Token: FinElementoLista, Tipo: 'FinElementoLista', Posición: 664
+Token: ElementoLista, Tipo: 'ElementoLista', Posición: 693
+Token: "Segundo ítem con enlace", Tipo: Desconocido, Posición: 707
+Token: Enlace, Tipo: 'Enlace', Posición: 749
+Token: Con, Tipo: 'Con', Posición: 776
+Token: "https://example.com", Tipo: Desconocido, Posición: 780
+Token: FinCon, Tipo: 'FinCon', Posición: 802
+Token: Mostrar, Tipo: 'Mostrar', Posición: 829
+Token: "Enlace Ejemplo", Tipo: Desconocido, Posición: 837
+Token: FinMostrar, Tipo: 'FinMostrar', Posición: 854
+Token: FinEnlace, Tipo: 'FinEnlace', Posición: 881
+Token: FinElementoLista, Tipo: 'FinElementoLista', Posición: 903
+Token: ElementoLista, Tipo: 'ElementoLista', Posición: 932
+Token: "Tercer ítem con subíndice y superíndice", Tipo: Desconocido, Posición: 946
+Token: Subindice, Tipo: 'Subindice', Posición: 1004
+Token: "subtexto", Tipo: Desconocido, Posición: 1014
+Token: FinSubindice, Tipo: 'FinSubindice', Posición: 1025
+Token: Superindice, Tipo: 'Superindice', Posición: 1054
+Token: "suptexto", Tipo: Desconocido, Posición: 1066
+Token: FinSuperindice, Tipo: 'FinSuperindice', Posición: 1077
+Token: FinElementoLista, Tipo: 'FinElementoLista', Posición: 1104
+Token: FinLista, Tipo: 'FinLista', Posición: 1129
+Token: Salto, Tipo: 'Salto', Posición: 1146
+Token: Parrafo, Tipo: 'Parrafo', Posición: 1160
+Token: Posicion, Tipo: 'Posicion', Posición: 1168
+Token: derecha, Tipo: Desconocido, Posición: 1177
+Token: FinPosicion, Tipo: 'FinPosicion', Posición: 1185
+Token: "Párrafo alineado a la derecha con línea debajo.", Tipo: Desconocido, Posición: 1197
+Token: FinParrafo, Tipo: 'FinParrafo', Posición: 1247
+Token: Linea, Tipo: 'Linea', Posición: 1266
+Token: Salto, Tipo: 'Salto', Posición: 1280
+Token: FinCuerpo, Tipo: 'FinCuerpo', Posición: 1290
+Token: Ppagina, Tipo: 'Ppagina', Posición: 1304
+Token: "© 2025 Mi Sitio Web - Todos los derechos reservados", Tipo: Desconocido, Posición: 1312
+Token: FPpagina, Tipo: 'FPpagina', Posición: 1366
+Token: FinPagina, Tipo: 'FinPagina', Posición: 1375

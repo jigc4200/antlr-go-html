@@ -69,11 +69,11 @@ func (s *BaseL5Listener) EnterFormato(ctx *FormatoContext) {}
 // ExitFormato is called when production formato is exited.
 func (s *BaseL5Listener) ExitFormato(ctx *FormatoContext) {}
 
-// EnterPosicion is called when production posicion is entered.
-func (s *BaseL5Listener) EnterPosicion(ctx *PosicionContext) {}
+// EnterAtributo is called when production atributo is entered.
+func (s *BaseL5Listener) EnterAtributo(ctx *AtributoContext) {}
 
-// ExitPosicion is called when production posicion is exited.
-func (s *BaseL5Listener) ExitPosicion(ctx *PosicionContext) {}
+// ExitAtributo is called when production atributo is exited.
+func (s *BaseL5Listener) ExitAtributo(ctx *AtributoContext) {}
 
 // EnterLista is called when production lista is entered.
 func (s *BaseL5Listener) EnterLista(ctx *ListaContext) {}
@@ -93,14 +93,26 @@ func (s *BaseL5Listener) EnterEnlace(ctx *EnlaceContext) {}
 // ExitEnlace is called when production enlace is exited.
 func (s *BaseL5Listener) ExitEnlace(ctx *EnlaceContext) {}
 
+// EnterImagen is called when production imagen is entered.
+func (s *BaseL5Listener) EnterImagen(ctx *ImagenContext) {}
+
+// ExitImagen is called when production imagen is exited.
+func (s *BaseL5Listener) ExitImagen(ctx *ImagenContext) {}
+
+// EnterEncabezado is called when production encabezado is entered.
+func (s *BaseL5Listener) EnterEncabezado(ctx *EncabezadoContext) {}
+
+// ExitEncabezado is called when production encabezado is exited.
+func (s *BaseL5Listener) ExitEncabezado(ctx *EncabezadoContext) {}
+
 // EnterSingleton is called when production singleton is entered.
 func (s *BaseL5Listener) EnterSingleton(ctx *SingletonContext) {}
 
 // ExitSingleton is called when production singleton is exited.
 func (s *BaseL5Listener) ExitSingleton(ctx *SingletonContext) {}
 
-// EnterTexto is called when production texto is entered.
-func (s *BaseL5Listener) EnterTexto(ctx *TextoContext) {}
+// EnterContenido is called when production contenido is entered.
+func (s *BaseL5Listener) EnterContenido(ctx *ContenidoContext) {}
 
-// ExitTexto is called when production texto is exited.
-func (s *BaseL5Listener) ExitTexto(ctx *TextoContext) {}
+// ExitContenido is called when production contenido is exited.
+func (s *BaseL5Listener) ExitContenido(ctx *ContenidoContext) {}

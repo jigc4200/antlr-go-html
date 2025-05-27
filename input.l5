@@ -1,21 +1,37 @@
 Pagina
-Cabecera
-Titulo Bienvenido a mi Página FinTitulo
-FinCabecera
-Cuerpo
-Negrita Este texto es muy importante FinNegrita
-Parrafo Posicion centrada FinPosicion Este párrafo está centrado FinParrafo
-Lista
-ElementoLista Item 1 FinElementoLista
-ElementoLista Item 2 FinElementoLista
-FinLista
-Enlace
-Con https://openai.com FinCon
-Mostrar Sitio de Jgomez FinMostrar
-FinEnlace
-Salto
-Linea
-FinCuerpo
-Ppagina Pie de página @jerse ©
-FPpagina
+    Cabecera
+        Titulo "Bienvenido a la Página de Prueba Avanzada" FinTitulo
+     
+    FinCabecera
+    
+    Cuerpo
+        Parrafo Posicion centrada FinPosicion "Este párrafo está centrado y contiene estilos mezclados:" FinParrafo
+        Salto
+        Negrita "Texto negrita dentro del cuerpo" FinNegrita
+        Salto
+        Cursiva "Texto en cursiva para enfatizar" FinCursiva
+        Salto
+        Subrayado "Texto subrayado y importante" FinSubrayado
+        Lista
+            ElementoLista "Primer ítem con Negrita y Cursiva" 
+                Negrita "Negrita interna" FinNegrita
+                Cursiva "Cursiva interna" FinCursiva
+            FinElementoLista
+            ElementoLista "Segundo ítem con enlace"
+                Enlace
+                    Con "https://example.com" FinCon
+                    Mostrar "Enlace Ejemplo" FinMostrar
+                FinEnlace
+            FinElementoLista
+            ElementoLista "Tercer ítem con subíndice y superíndice"
+                Subindice "subtexto" FinSubindice
+                Superindice "suptexto" FinSuperindice
+            FinElementoLista
+        FinLista
+        Salto
+        Parrafo Posicion derecha FinPosicion "Párrafo alineado a la derecha con línea debajo." FinParrafo
+        Linea
+        Salto
+    FinCuerpo
+    Ppagina "© 2025 Mi Sitio Web - Todos los derechos reservados" FPpagina
 FinPagina

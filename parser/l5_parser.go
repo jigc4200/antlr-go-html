@@ -33,83 +33,110 @@ var L5ParserStaticData struct {
 func l5ParserInit() {
 	staticData := &L5ParserStaticData
 	staticData.LiteralNames = []string{
-		"", "'Pagina'", "'FinPagina'", "'Cabecera'", "'FinCabecera'", "'Titulo'",
-		"'FinTitulo'", "'Cuerpo'", "'FinCuerpo'", "'Ppagina'", "'FPpagina'",
+		"", "'Pagina'", "'Cabecera'", "'Titulo'", "'FinTitulo'", "'FinCabecera'",
+		"'Cuerpo'", "'FinCuerpo'", "'Ppagina'", "'FPpagina'", "'FinPagina'",
 		"'Negrita'", "'FinNegrita'", "'Cursiva'", "'FinCursiva'", "'Subrayado'",
 		"'FinSubrayado'", "'Tachado'", "'FinTachado'", "'Subindice'", "'FinSubindice'",
 		"'Superindice'", "'FinSuperindice'", "'Tama\\u00F1o'", "'FinTama\\u00F1o'",
 		"'Sangrado'", "'FinSangrado'", "'Parrafo'", "'FinParrafo'", "'Posicion'",
-		"'FinPosicion'", "'Lista'", "'FinLista'", "'ElementoLista'", "'FinElementoLista'",
-		"'Enlace'", "'Con'", "'FinCon'", "'Mostrar'", "'FinMostrar'", "'FinEnlace'",
-		"'Linea'", "'Salto'",
+		"'FinPosicion'", "'Id'", "'FinId'", "'Clase'", "'FinClase'", "'Lista'",
+		"'FinLista'", "'ElementoLista'", "'FinElementoLista'", "'Enlace'", "'FinEnlace'",
+		"'Con'", "'FinCon'", "'Mostrar'", "'FinMostrar'", "'Imagen'", "'FinImagen'",
+		"'Src'", "'FinSrc'", "'Alt'", "'FinAlt'", "'Encabezado'", "'FinEncabezado'",
+		"'Linea'", "'Salto'", "'Estilo'", "'FinEstilo'",
 	}
 	staticData.SymbolicNames = []string{
-		"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
-		"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
-		"", "", "", "", "", "", "", "", "", "POSICION", "TEXTO", "WS",
+		"", "PAGINA", "CABECERA", "TITULO", "FINTITULO", "FINCABECERA", "CUERPO",
+		"FINCUERPO", "PPAGINA", "FPPAGINA", "FINPAGINA", "NEGRITA", "FINNEGRITA",
+		"CURSIVA", "FINCURSIVA", "SUBRAYADO", "FINSUBRAYADO", "TACHADO", "FINTACHADO",
+		"SUBINDICE", "FINSUBINDICE", "SUPERINDICE", "FINSUPERINDICE", "TAMANO",
+		"FINTAMANO", "SANGRADO", "FINSANGRADO", "PARRAFO", "FINPARRAFO", "POSICION_KW",
+		"FINPOSICION", "ID", "FINID", "CLASE", "FINCLASE", "LISTA", "FINLISTA",
+		"ELEMENTOLISTA", "FINELEMENTOLISTA", "ENLACE", "FINENLACE", "CON", "FINCON",
+		"MOSTRAR", "FINMOSTRAR", "IMAGEN", "FINIMAGEN", "SRC", "FINSRC", "ALT",
+		"FINALT", "ENCABEZADO", "FINENCABEZADO", "LINEA", "SALTO", "ESTILO",
+		"FINESTILO", "POSICION", "ATTR_VAL", "WS",
 	}
 	staticData.RuleNames = []string{
 		"pagina", "cabecera", "titulo", "cuerpo", "pie", "elemento", "estilo",
-		"formato", "posicion", "lista", "elementoLista", "enlace", "singleton",
-		"texto",
+		"formato", "atributo", "lista", "elementoLista", "enlace", "imagen",
+		"encabezado", "singleton", "contenido",
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 45, 138, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 59, 177, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
-		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 1, 0, 1, 0, 1, 0, 1, 0, 1,
-		0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 1, 3, 5,
-		3, 45, 8, 3, 10, 3, 12, 3, 48, 9, 3, 1, 3, 1, 3, 1, 4, 1, 4, 1, 4, 1, 4,
-		1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3, 5, 61, 8, 5, 1, 6, 1, 6, 1, 6, 1, 6, 1,
-		6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1,
-		6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 3,
-		6, 91, 8, 6, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 3, 7, 99, 8, 7, 1, 7,
-		1, 7, 1, 7, 3, 7, 104, 8, 7, 1, 8, 1, 8, 1, 8, 1, 8, 1, 9, 1, 9, 4, 9,
-		112, 8, 9, 11, 9, 12, 9, 113, 1, 9, 1, 9, 1, 10, 1, 10, 1, 10, 1, 10, 1,
-		11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 12, 1, 12,
-		1, 13, 4, 13, 134, 8, 13, 11, 13, 12, 13, 135, 1, 13, 0, 0, 14, 0, 2, 4,
-		6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 0, 1, 1, 0, 41, 42, 138, 0, 28,
-		1, 0, 0, 0, 2, 34, 1, 0, 0, 0, 4, 38, 1, 0, 0, 0, 6, 42, 1, 0, 0, 0, 8,
-		51, 1, 0, 0, 0, 10, 60, 1, 0, 0, 0, 12, 90, 1, 0, 0, 0, 14, 103, 1, 0,
-		0, 0, 16, 105, 1, 0, 0, 0, 18, 109, 1, 0, 0, 0, 20, 117, 1, 0, 0, 0, 22,
-		121, 1, 0, 0, 0, 24, 130, 1, 0, 0, 0, 26, 133, 1, 0, 0, 0, 28, 29, 5, 1,
-		0, 0, 29, 30, 3, 2, 1, 0, 30, 31, 3, 6, 3, 0, 31, 32, 3, 8, 4, 0, 32, 33,
-		5, 2, 0, 0, 33, 1, 1, 0, 0, 0, 34, 35, 5, 3, 0, 0, 35, 36, 3, 4, 2, 0,
-		36, 37, 5, 4, 0, 0, 37, 3, 1, 0, 0, 0, 38, 39, 5, 5, 0, 0, 39, 40, 3, 26,
-		13, 0, 40, 41, 5, 6, 0, 0, 41, 5, 1, 0, 0, 0, 42, 46, 5, 7, 0, 0, 43, 45,
-		3, 10, 5, 0, 44, 43, 1, 0, 0, 0, 45, 48, 1, 0, 0, 0, 46, 44, 1, 0, 0, 0,
-		46, 47, 1, 0, 0, 0, 47, 49, 1, 0, 0, 0, 48, 46, 1, 0, 0, 0, 49, 50, 5,
-		8, 0, 0, 50, 7, 1, 0, 0, 0, 51, 52, 5, 9, 0, 0, 52, 53, 3, 26, 13, 0, 53,
-		54, 5, 10, 0, 0, 54, 9, 1, 0, 0, 0, 55, 61, 3, 12, 6, 0, 56, 61, 3, 14,
-		7, 0, 57, 61, 3, 18, 9, 0, 58, 61, 3, 22, 11, 0, 59, 61, 3, 24, 12, 0,
-		60, 55, 1, 0, 0, 0, 60, 56, 1, 0, 0, 0, 60, 57, 1, 0, 0, 0, 60, 58, 1,
-		0, 0, 0, 60, 59, 1, 0, 0, 0, 61, 11, 1, 0, 0, 0, 62, 63, 5, 11, 0, 0, 63,
-		64, 3, 26, 13, 0, 64, 65, 5, 12, 0, 0, 65, 91, 1, 0, 0, 0, 66, 67, 5, 13,
-		0, 0, 67, 68, 3, 26, 13, 0, 68, 69, 5, 14, 0, 0, 69, 91, 1, 0, 0, 0, 70,
-		71, 5, 15, 0, 0, 71, 72, 3, 26, 13, 0, 72, 73, 5, 16, 0, 0, 73, 91, 1,
-		0, 0, 0, 74, 75, 5, 17, 0, 0, 75, 76, 3, 26, 13, 0, 76, 77, 5, 18, 0, 0,
-		77, 91, 1, 0, 0, 0, 78, 79, 5, 19, 0, 0, 79, 80, 3, 26, 13, 0, 80, 81,
-		5, 20, 0, 0, 81, 91, 1, 0, 0, 0, 82, 83, 5, 21, 0, 0, 83, 84, 3, 26, 13,
-		0, 84, 85, 5, 22, 0, 0, 85, 91, 1, 0, 0, 0, 86, 87, 5, 23, 0, 0, 87, 88,
-		3, 26, 13, 0, 88, 89, 5, 24, 0, 0, 89, 91, 1, 0, 0, 0, 90, 62, 1, 0, 0,
-		0, 90, 66, 1, 0, 0, 0, 90, 70, 1, 0, 0, 0, 90, 74, 1, 0, 0, 0, 90, 78,
-		1, 0, 0, 0, 90, 82, 1, 0, 0, 0, 90, 86, 1, 0, 0, 0, 91, 13, 1, 0, 0, 0,
-		92, 93, 5, 25, 0, 0, 93, 94, 3, 26, 13, 0, 94, 95, 5, 26, 0, 0, 95, 104,
-		1, 0, 0, 0, 96, 98, 5, 27, 0, 0, 97, 99, 3, 16, 8, 0, 98, 97, 1, 0, 0,
-		0, 98, 99, 1, 0, 0, 0, 99, 100, 1, 0, 0, 0, 100, 101, 3, 26, 13, 0, 101,
-		102, 5, 28, 0, 0, 102, 104, 1, 0, 0, 0, 103, 92, 1, 0, 0, 0, 103, 96, 1,
-		0, 0, 0, 104, 15, 1, 0, 0, 0, 105, 106, 5, 29, 0, 0, 106, 107, 5, 43, 0,
-		0, 107, 108, 5, 30, 0, 0, 108, 17, 1, 0, 0, 0, 109, 111, 5, 31, 0, 0, 110,
-		112, 3, 20, 10, 0, 111, 110, 1, 0, 0, 0, 112, 113, 1, 0, 0, 0, 113, 111,
-		1, 0, 0, 0, 113, 114, 1, 0, 0, 0, 114, 115, 1, 0, 0, 0, 115, 116, 5, 32,
-		0, 0, 116, 19, 1, 0, 0, 0, 117, 118, 5, 33, 0, 0, 118, 119, 3, 26, 13,
-		0, 119, 120, 5, 34, 0, 0, 120, 21, 1, 0, 0, 0, 121, 122, 5, 35, 0, 0, 122,
-		123, 5, 36, 0, 0, 123, 124, 3, 26, 13, 0, 124, 125, 5, 37, 0, 0, 125, 126,
-		5, 38, 0, 0, 126, 127, 3, 26, 13, 0, 127, 128, 5, 39, 0, 0, 128, 129, 5,
-		40, 0, 0, 129, 23, 1, 0, 0, 0, 130, 131, 7, 0, 0, 0, 131, 25, 1, 0, 0,
-		0, 132, 134, 5, 44, 0, 0, 133, 132, 1, 0, 0, 0, 134, 135, 1, 0, 0, 0, 135,
-		133, 1, 0, 0, 0, 135, 136, 1, 0, 0, 0, 136, 27, 1, 0, 0, 0, 7, 46, 60,
-		90, 98, 103, 113, 135,
+		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
+		1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2,
+		1, 2, 1, 2, 1, 3, 1, 3, 5, 3, 49, 8, 3, 10, 3, 12, 3, 52, 9, 3, 1, 3, 1,
+		3, 1, 4, 1, 4, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3,
+		5, 67, 8, 5, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6,
+		1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6,
+		1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 3, 6, 98, 8, 6, 1, 7, 1, 7, 1,
+		7, 1, 7, 1, 7, 1, 7, 3, 7, 106, 8, 7, 1, 7, 5, 7, 109, 8, 7, 10, 7, 12,
+		7, 112, 9, 7, 1, 7, 1, 7, 1, 7, 3, 7, 117, 8, 7, 1, 8, 1, 8, 1, 8, 1, 8,
+		1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 3, 8, 128, 8, 8, 1, 9, 1, 9, 4, 9, 132, 8,
+		9, 11, 9, 12, 9, 133, 1, 9, 1, 9, 1, 10, 1, 10, 1, 10, 1, 10, 1, 11, 1,
+		11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 12, 1, 12, 1, 12,
+		1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 3, 12, 159, 8, 12, 1, 12, 1, 12, 1,
+		13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 14, 1, 14, 1, 15, 1, 15, 1, 15, 4, 15,
+		173, 8, 15, 11, 15, 12, 15, 174, 1, 15, 0, 0, 16, 0, 2, 4, 6, 8, 10, 12,
+		14, 16, 18, 20, 22, 24, 26, 28, 30, 0, 1, 1, 0, 53, 54, 183, 0, 32, 1,
+		0, 0, 0, 2, 38, 1, 0, 0, 0, 4, 42, 1, 0, 0, 0, 6, 46, 1, 0, 0, 0, 8, 55,
+		1, 0, 0, 0, 10, 66, 1, 0, 0, 0, 12, 97, 1, 0, 0, 0, 14, 116, 1, 0, 0, 0,
+		16, 127, 1, 0, 0, 0, 18, 129, 1, 0, 0, 0, 20, 137, 1, 0, 0, 0, 22, 141,
+		1, 0, 0, 0, 24, 150, 1, 0, 0, 0, 26, 162, 1, 0, 0, 0, 28, 167, 1, 0, 0,
+		0, 30, 172, 1, 0, 0, 0, 32, 33, 5, 1, 0, 0, 33, 34, 3, 2, 1, 0, 34, 35,
+		3, 6, 3, 0, 35, 36, 3, 8, 4, 0, 36, 37, 5, 10, 0, 0, 37, 1, 1, 0, 0, 0,
+		38, 39, 5, 2, 0, 0, 39, 40, 3, 4, 2, 0, 40, 41, 5, 5, 0, 0, 41, 3, 1, 0,
+		0, 0, 42, 43, 5, 3, 0, 0, 43, 44, 3, 30, 15, 0, 44, 45, 5, 4, 0, 0, 45,
+		5, 1, 0, 0, 0, 46, 50, 5, 6, 0, 0, 47, 49, 3, 10, 5, 0, 48, 47, 1, 0, 0,
+		0, 49, 52, 1, 0, 0, 0, 50, 48, 1, 0, 0, 0, 50, 51, 1, 0, 0, 0, 51, 53,
+		1, 0, 0, 0, 52, 50, 1, 0, 0, 0, 53, 54, 5, 7, 0, 0, 54, 7, 1, 0, 0, 0,
+		55, 56, 5, 8, 0, 0, 56, 57, 3, 30, 15, 0, 57, 58, 5, 9, 0, 0, 58, 9, 1,
+		0, 0, 0, 59, 67, 3, 12, 6, 0, 60, 67, 3, 14, 7, 0, 61, 67, 3, 18, 9, 0,
+		62, 67, 3, 22, 11, 0, 63, 67, 3, 28, 14, 0, 64, 67, 3, 24, 12, 0, 65, 67,
+		3, 26, 13, 0, 66, 59, 1, 0, 0, 0, 66, 60, 1, 0, 0, 0, 66, 61, 1, 0, 0,
+		0, 66, 62, 1, 0, 0, 0, 66, 63, 1, 0, 0, 0, 66, 64, 1, 0, 0, 0, 66, 65,
+		1, 0, 0, 0, 67, 11, 1, 0, 0, 0, 68, 69, 5, 11, 0, 0, 69, 70, 3, 30, 15,
+		0, 70, 71, 5, 12, 0, 0, 71, 98, 1, 0, 0, 0, 72, 73, 5, 13, 0, 0, 73, 74,
+		3, 30, 15, 0, 74, 75, 5, 14, 0, 0, 75, 98, 1, 0, 0, 0, 76, 77, 5, 15, 0,
+		0, 77, 78, 3, 30, 15, 0, 78, 79, 5, 16, 0, 0, 79, 98, 1, 0, 0, 0, 80, 81,
+		5, 17, 0, 0, 81, 82, 3, 30, 15, 0, 82, 83, 5, 18, 0, 0, 83, 98, 1, 0, 0,
+		0, 84, 85, 5, 19, 0, 0, 85, 86, 3, 30, 15, 0, 86, 87, 5, 20, 0, 0, 87,
+		98, 1, 0, 0, 0, 88, 89, 5, 21, 0, 0, 89, 90, 3, 30, 15, 0, 90, 91, 5, 22,
+		0, 0, 91, 98, 1, 0, 0, 0, 92, 93, 5, 23, 0, 0, 93, 94, 5, 58, 0, 0, 94,
+		95, 3, 30, 15, 0, 95, 96, 5, 24, 0, 0, 96, 98, 1, 0, 0, 0, 97, 68, 1, 0,
+		0, 0, 97, 72, 1, 0, 0, 0, 97, 76, 1, 0, 0, 0, 97, 80, 1, 0, 0, 0, 97, 84,
+		1, 0, 0, 0, 97, 88, 1, 0, 0, 0, 97, 92, 1, 0, 0, 0, 98, 13, 1, 0, 0, 0,
+		99, 100, 5, 25, 0, 0, 100, 101, 3, 30, 15, 0, 101, 102, 5, 26, 0, 0, 102,
+		117, 1, 0, 0, 0, 103, 105, 5, 27, 0, 0, 104, 106, 3, 12, 6, 0, 105, 104,
+		1, 0, 0, 0, 105, 106, 1, 0, 0, 0, 106, 110, 1, 0, 0, 0, 107, 109, 3, 16,
+		8, 0, 108, 107, 1, 0, 0, 0, 109, 112, 1, 0, 0, 0, 110, 108, 1, 0, 0, 0,
+		110, 111, 1, 0, 0, 0, 111, 113, 1, 0, 0, 0, 112, 110, 1, 0, 0, 0, 113,
+		114, 3, 30, 15, 0, 114, 115, 5, 28, 0, 0, 115, 117, 1, 0, 0, 0, 116, 99,
+		1, 0, 0, 0, 116, 103, 1, 0, 0, 0, 117, 15, 1, 0, 0, 0, 118, 119, 5, 29,
+		0, 0, 119, 120, 5, 57, 0, 0, 120, 128, 5, 30, 0, 0, 121, 122, 5, 31, 0,
+		0, 122, 123, 5, 58, 0, 0, 123, 128, 5, 32, 0, 0, 124, 125, 5, 33, 0, 0,
+		125, 126, 5, 58, 0, 0, 126, 128, 5, 34, 0, 0, 127, 118, 1, 0, 0, 0, 127,
+		121, 1, 0, 0, 0, 127, 124, 1, 0, 0, 0, 128, 17, 1, 0, 0, 0, 129, 131, 5,
+		35, 0, 0, 130, 132, 3, 20, 10, 0, 131, 130, 1, 0, 0, 0, 132, 133, 1, 0,
+		0, 0, 133, 131, 1, 0, 0, 0, 133, 134, 1, 0, 0, 0, 134, 135, 1, 0, 0, 0,
+		135, 136, 5, 36, 0, 0, 136, 19, 1, 0, 0, 0, 137, 138, 5, 37, 0, 0, 138,
+		139, 3, 30, 15, 0, 139, 140, 5, 38, 0, 0, 140, 21, 1, 0, 0, 0, 141, 142,
+		5, 39, 0, 0, 142, 143, 5, 41, 0, 0, 143, 144, 5, 58, 0, 0, 144, 145, 5,
+		42, 0, 0, 145, 146, 5, 43, 0, 0, 146, 147, 3, 30, 15, 0, 147, 148, 5, 44,
+		0, 0, 148, 149, 5, 40, 0, 0, 149, 23, 1, 0, 0, 0, 150, 151, 5, 45, 0, 0,
+		151, 152, 5, 47, 0, 0, 152, 153, 5, 58, 0, 0, 153, 158, 5, 48, 0, 0, 154,
+		155, 5, 49, 0, 0, 155, 156, 3, 30, 15, 0, 156, 157, 5, 50, 0, 0, 157, 159,
+		1, 0, 0, 0, 158, 154, 1, 0, 0, 0, 158, 159, 1, 0, 0, 0, 159, 160, 1, 0,
+		0, 0, 160, 161, 5, 46, 0, 0, 161, 25, 1, 0, 0, 0, 162, 163, 5, 51, 0, 0,
+		163, 164, 5, 58, 0, 0, 164, 165, 3, 30, 15, 0, 165, 166, 5, 52, 0, 0, 166,
+		27, 1, 0, 0, 0, 167, 168, 7, 0, 0, 0, 168, 29, 1, 0, 0, 0, 169, 173, 5,
+		58, 0, 0, 170, 173, 3, 10, 5, 0, 171, 173, 3, 12, 6, 0, 172, 169, 1, 0,
+		0, 0, 172, 170, 1, 0, 0, 0, 172, 171, 1, 0, 0, 0, 173, 174, 1, 0, 0, 0,
+		174, 172, 1, 0, 0, 0, 174, 175, 1, 0, 0, 0, 175, 31, 1, 0, 0, 0, 11, 50,
+		66, 97, 105, 110, 116, 127, 133, 158, 172, 174,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -147,52 +174,66 @@ func NewL5Parser(input antlr.TokenStream) *L5Parser {
 
 // L5Parser tokens.
 const (
-	L5ParserEOF      = antlr.TokenEOF
-	L5ParserT__0     = 1
-	L5ParserT__1     = 2
-	L5ParserT__2     = 3
-	L5ParserT__3     = 4
-	L5ParserT__4     = 5
-	L5ParserT__5     = 6
-	L5ParserT__6     = 7
-	L5ParserT__7     = 8
-	L5ParserT__8     = 9
-	L5ParserT__9     = 10
-	L5ParserT__10    = 11
-	L5ParserT__11    = 12
-	L5ParserT__12    = 13
-	L5ParserT__13    = 14
-	L5ParserT__14    = 15
-	L5ParserT__15    = 16
-	L5ParserT__16    = 17
-	L5ParserT__17    = 18
-	L5ParserT__18    = 19
-	L5ParserT__19    = 20
-	L5ParserT__20    = 21
-	L5ParserT__21    = 22
-	L5ParserT__22    = 23
-	L5ParserT__23    = 24
-	L5ParserT__24    = 25
-	L5ParserT__25    = 26
-	L5ParserT__26    = 27
-	L5ParserT__27    = 28
-	L5ParserT__28    = 29
-	L5ParserT__29    = 30
-	L5ParserT__30    = 31
-	L5ParserT__31    = 32
-	L5ParserT__32    = 33
-	L5ParserT__33    = 34
-	L5ParserT__34    = 35
-	L5ParserT__35    = 36
-	L5ParserT__36    = 37
-	L5ParserT__37    = 38
-	L5ParserT__38    = 39
-	L5ParserT__39    = 40
-	L5ParserT__40    = 41
-	L5ParserT__41    = 42
-	L5ParserPOSICION = 43
-	L5ParserTEXTO    = 44
-	L5ParserWS       = 45
+	L5ParserEOF              = antlr.TokenEOF
+	L5ParserPAGINA           = 1
+	L5ParserCABECERA         = 2
+	L5ParserTITULO           = 3
+	L5ParserFINTITULO        = 4
+	L5ParserFINCABECERA      = 5
+	L5ParserCUERPO           = 6
+	L5ParserFINCUERPO        = 7
+	L5ParserPPAGINA          = 8
+	L5ParserFPPAGINA         = 9
+	L5ParserFINPAGINA        = 10
+	L5ParserNEGRITA          = 11
+	L5ParserFINNEGRITA       = 12
+	L5ParserCURSIVA          = 13
+	L5ParserFINCURSIVA       = 14
+	L5ParserSUBRAYADO        = 15
+	L5ParserFINSUBRAYADO     = 16
+	L5ParserTACHADO          = 17
+	L5ParserFINTACHADO       = 18
+	L5ParserSUBINDICE        = 19
+	L5ParserFINSUBINDICE     = 20
+	L5ParserSUPERINDICE      = 21
+	L5ParserFINSUPERINDICE   = 22
+	L5ParserTAMANO           = 23
+	L5ParserFINTAMANO        = 24
+	L5ParserSANGRADO         = 25
+	L5ParserFINSANGRADO      = 26
+	L5ParserPARRAFO          = 27
+	L5ParserFINPARRAFO       = 28
+	L5ParserPOSICION_KW      = 29
+	L5ParserFINPOSICION      = 30
+	L5ParserID               = 31
+	L5ParserFINID            = 32
+	L5ParserCLASE            = 33
+	L5ParserFINCLASE         = 34
+	L5ParserLISTA            = 35
+	L5ParserFINLISTA         = 36
+	L5ParserELEMENTOLISTA    = 37
+	L5ParserFINELEMENTOLISTA = 38
+	L5ParserENLACE           = 39
+	L5ParserFINENLACE        = 40
+	L5ParserCON              = 41
+	L5ParserFINCON           = 42
+	L5ParserMOSTRAR          = 43
+	L5ParserFINMOSTRAR       = 44
+	L5ParserIMAGEN           = 45
+	L5ParserFINIMAGEN        = 46
+	L5ParserSRC              = 47
+	L5ParserFINSRC           = 48
+	L5ParserALT              = 49
+	L5ParserFINALT           = 50
+	L5ParserENCABEZADO       = 51
+	L5ParserFINENCABEZADO    = 52
+	L5ParserLINEA            = 53
+	L5ParserSALTO            = 54
+	L5ParserESTILO           = 55
+	L5ParserFINESTILO        = 56
+	L5ParserPOSICION         = 57
+	L5ParserATTR_VAL         = 58
+	L5ParserWS               = 59
 )
 
 // L5Parser rules.
@@ -205,12 +246,14 @@ const (
 	L5ParserRULE_elemento      = 5
 	L5ParserRULE_estilo        = 6
 	L5ParserRULE_formato       = 7
-	L5ParserRULE_posicion      = 8
+	L5ParserRULE_atributo      = 8
 	L5ParserRULE_lista         = 9
 	L5ParserRULE_elementoLista = 10
 	L5ParserRULE_enlace        = 11
-	L5ParserRULE_singleton     = 12
-	L5ParserRULE_texto         = 13
+	L5ParserRULE_imagen        = 12
+	L5ParserRULE_encabezado    = 13
+	L5ParserRULE_singleton     = 14
+	L5ParserRULE_contenido     = 15
 )
 
 // IPaginaContext is an interface to support dynamic dispatch.
@@ -221,9 +264,11 @@ type IPaginaContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
+	PAGINA() antlr.TerminalNode
 	Cabecera() ICabeceraContext
 	Cuerpo() ICuerpoContext
 	Pie() IPieContext
+	FINPAGINA() antlr.TerminalNode
 
 	// IsPaginaContext differentiates from other interfaces.
 	IsPaginaContext()
@@ -260,6 +305,10 @@ func NewPaginaContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 }
 
 func (s *PaginaContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *PaginaContext) PAGINA() antlr.TerminalNode {
+	return s.GetToken(L5ParserPAGINA, 0)
+}
 
 func (s *PaginaContext) Cabecera() ICabeceraContext {
 	var t antlr.RuleContext
@@ -309,6 +358,10 @@ func (s *PaginaContext) Pie() IPieContext {
 	return t.(IPieContext)
 }
 
+func (s *PaginaContext) FINPAGINA() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINPAGINA, 0)
+}
+
 func (s *PaginaContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -334,28 +387,28 @@ func (p *L5Parser) Pagina() (localctx IPaginaContext) {
 	p.EnterRule(localctx, 0, L5ParserRULE_pagina)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(28)
-		p.Match(L5ParserT__0)
+		p.SetState(32)
+		p.Match(L5ParserPAGINA)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
 	{
-		p.SetState(29)
+		p.SetState(33)
 		p.Cabecera()
 	}
 	{
-		p.SetState(30)
+		p.SetState(34)
 		p.Cuerpo()
 	}
 	{
-		p.SetState(31)
+		p.SetState(35)
 		p.Pie()
 	}
 	{
-		p.SetState(32)
-		p.Match(L5ParserT__1)
+		p.SetState(36)
+		p.Match(L5ParserFINPAGINA)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -383,7 +436,9 @@ type ICabeceraContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
+	CABECERA() antlr.TerminalNode
 	Titulo() ITituloContext
+	FINCABECERA() antlr.TerminalNode
 
 	// IsCabeceraContext differentiates from other interfaces.
 	IsCabeceraContext()
@@ -421,6 +476,10 @@ func NewCabeceraContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 
 func (s *CabeceraContext) GetParser() antlr.Parser { return s.parser }
 
+func (s *CabeceraContext) CABECERA() antlr.TerminalNode {
+	return s.GetToken(L5ParserCABECERA, 0)
+}
+
 func (s *CabeceraContext) Titulo() ITituloContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
@@ -435,6 +494,10 @@ func (s *CabeceraContext) Titulo() ITituloContext {
 	}
 
 	return t.(ITituloContext)
+}
+
+func (s *CabeceraContext) FINCABECERA() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINCABECERA, 0)
 }
 
 func (s *CabeceraContext) GetRuleContext() antlr.RuleContext {
@@ -462,20 +525,20 @@ func (p *L5Parser) Cabecera() (localctx ICabeceraContext) {
 	p.EnterRule(localctx, 2, L5ParserRULE_cabecera)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(34)
-		p.Match(L5ParserT__2)
+		p.SetState(38)
+		p.Match(L5ParserCABECERA)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
 	{
-		p.SetState(35)
+		p.SetState(39)
 		p.Titulo()
 	}
 	{
-		p.SetState(36)
-		p.Match(L5ParserT__3)
+		p.SetState(40)
+		p.Match(L5ParserFINCABECERA)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -503,7 +566,9 @@ type ITituloContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	Texto() ITextoContext
+	TITULO() antlr.TerminalNode
+	Contenido() IContenidoContext
+	FINTITULO() antlr.TerminalNode
 
 	// IsTituloContext differentiates from other interfaces.
 	IsTituloContext()
@@ -541,10 +606,14 @@ func NewTituloContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 
 func (s *TituloContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *TituloContext) Texto() ITextoContext {
+func (s *TituloContext) TITULO() antlr.TerminalNode {
+	return s.GetToken(L5ParserTITULO, 0)
+}
+
+func (s *TituloContext) Contenido() IContenidoContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ITextoContext); ok {
+		if _, ok := ctx.(IContenidoContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -554,7 +623,11 @@ func (s *TituloContext) Texto() ITextoContext {
 		return nil
 	}
 
-	return t.(ITextoContext)
+	return t.(IContenidoContext)
+}
+
+func (s *TituloContext) FINTITULO() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINTITULO, 0)
 }
 
 func (s *TituloContext) GetRuleContext() antlr.RuleContext {
@@ -582,20 +655,20 @@ func (p *L5Parser) Titulo() (localctx ITituloContext) {
 	p.EnterRule(localctx, 4, L5ParserRULE_titulo)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(38)
-		p.Match(L5ParserT__4)
+		p.SetState(42)
+		p.Match(L5ParserTITULO)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
 	{
-		p.SetState(39)
-		p.Texto()
+		p.SetState(43)
+		p.Contenido()
 	}
 	{
-		p.SetState(40)
-		p.Match(L5ParserT__5)
+		p.SetState(44)
+		p.Match(L5ParserFINTITULO)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -623,6 +696,8 @@ type ICuerpoContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
+	CUERPO() antlr.TerminalNode
+	FINCUERPO() antlr.TerminalNode
 	AllElemento() []IElementoContext
 	Elemento(i int) IElementoContext
 
@@ -661,6 +736,14 @@ func NewCuerpoContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 }
 
 func (s *CuerpoContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CuerpoContext) CUERPO() antlr.TerminalNode {
+	return s.GetToken(L5ParserCUERPO, 0)
+}
+
+func (s *CuerpoContext) FINCUERPO() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINCUERPO, 0)
+}
 
 func (s *CuerpoContext) AllElemento() []IElementoContext {
 	children := s.GetChildren()
@@ -730,27 +813,27 @@ func (p *L5Parser) Cuerpo() (localctx ICuerpoContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(42)
-		p.Match(L5ParserT__6)
+		p.SetState(46)
+		p.Match(L5ParserCUERPO)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(46)
+	p.SetState(50)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&6633755944960) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&29309166244505600) != 0 {
 		{
-			p.SetState(43)
+			p.SetState(47)
 			p.Elemento()
 		}
 
-		p.SetState(48)
+		p.SetState(52)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -758,8 +841,8 @@ func (p *L5Parser) Cuerpo() (localctx ICuerpoContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(49)
-		p.Match(L5ParserT__7)
+		p.SetState(53)
+		p.Match(L5ParserFINCUERPO)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -787,7 +870,9 @@ type IPieContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	Texto() ITextoContext
+	PPAGINA() antlr.TerminalNode
+	Contenido() IContenidoContext
+	FPPAGINA() antlr.TerminalNode
 
 	// IsPieContext differentiates from other interfaces.
 	IsPieContext()
@@ -825,10 +910,14 @@ func NewPieContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoking
 
 func (s *PieContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *PieContext) Texto() ITextoContext {
+func (s *PieContext) PPAGINA() antlr.TerminalNode {
+	return s.GetToken(L5ParserPPAGINA, 0)
+}
+
+func (s *PieContext) Contenido() IContenidoContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ITextoContext); ok {
+		if _, ok := ctx.(IContenidoContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -838,7 +927,11 @@ func (s *PieContext) Texto() ITextoContext {
 		return nil
 	}
 
-	return t.(ITextoContext)
+	return t.(IContenidoContext)
+}
+
+func (s *PieContext) FPPAGINA() antlr.TerminalNode {
+	return s.GetToken(L5ParserFPPAGINA, 0)
 }
 
 func (s *PieContext) GetRuleContext() antlr.RuleContext {
@@ -866,20 +959,20 @@ func (p *L5Parser) Pie() (localctx IPieContext) {
 	p.EnterRule(localctx, 8, L5ParserRULE_pie)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(51)
-		p.Match(L5ParserT__8)
+		p.SetState(55)
+		p.Match(L5ParserPPAGINA)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
 	{
-		p.SetState(52)
-		p.Texto()
+		p.SetState(56)
+		p.Contenido()
 	}
 	{
-		p.SetState(53)
-		p.Match(L5ParserT__9)
+		p.SetState(57)
+		p.Match(L5ParserFPPAGINA)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -912,6 +1005,8 @@ type IElementoContext interface {
 	Lista() IListaContext
 	Enlace() IEnlaceContext
 	Singleton() ISingletonContext
+	Imagen() IImagenContext
+	Encabezado() IEncabezadoContext
 
 	// IsElementoContext differentiates from other interfaces.
 	IsElementoContext()
@@ -1029,6 +1124,38 @@ func (s *ElementoContext) Singleton() ISingletonContext {
 	return t.(ISingletonContext)
 }
 
+func (s *ElementoContext) Imagen() IImagenContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IImagenContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IImagenContext)
+}
+
+func (s *ElementoContext) Encabezado() IEncabezadoContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEncabezadoContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEncabezadoContext)
+}
+
 func (s *ElementoContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -1052,46 +1179,60 @@ func (s *ElementoContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *L5Parser) Elemento() (localctx IElementoContext) {
 	localctx = NewElementoContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 10, L5ParserRULE_elemento)
-	p.SetState(60)
+	p.SetState(66)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case L5ParserT__10, L5ParserT__12, L5ParserT__14, L5ParserT__16, L5ParserT__18, L5ParserT__20, L5ParserT__22:
+	case L5ParserNEGRITA, L5ParserCURSIVA, L5ParserSUBRAYADO, L5ParserTACHADO, L5ParserSUBINDICE, L5ParserSUPERINDICE, L5ParserTAMANO:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(55)
+			p.SetState(59)
 			p.Estilo()
 		}
 
-	case L5ParserT__24, L5ParserT__26:
+	case L5ParserSANGRADO, L5ParserPARRAFO:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(56)
+			p.SetState(60)
 			p.Formato()
 		}
 
-	case L5ParserT__30:
+	case L5ParserLISTA:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(57)
+			p.SetState(61)
 			p.Lista()
 		}
 
-	case L5ParserT__34:
+	case L5ParserENLACE:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(58)
+			p.SetState(62)
 			p.Enlace()
 		}
 
-	case L5ParserT__40, L5ParserT__41:
+	case L5ParserLINEA, L5ParserSALTO:
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(59)
+			p.SetState(63)
 			p.Singleton()
+		}
+
+	case L5ParserIMAGEN:
+		p.EnterOuterAlt(localctx, 6)
+		{
+			p.SetState(64)
+			p.Imagen()
+		}
+
+	case L5ParserENCABEZADO:
+		p.EnterOuterAlt(localctx, 7)
+		{
+			p.SetState(65)
+			p.Encabezado()
 		}
 
 	default:
@@ -1120,7 +1261,22 @@ type IEstiloContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	Texto() ITextoContext
+	NEGRITA() antlr.TerminalNode
+	Contenido() IContenidoContext
+	FINNEGRITA() antlr.TerminalNode
+	CURSIVA() antlr.TerminalNode
+	FINCURSIVA() antlr.TerminalNode
+	SUBRAYADO() antlr.TerminalNode
+	FINSUBRAYADO() antlr.TerminalNode
+	TACHADO() antlr.TerminalNode
+	FINTACHADO() antlr.TerminalNode
+	SUBINDICE() antlr.TerminalNode
+	FINSUBINDICE() antlr.TerminalNode
+	SUPERINDICE() antlr.TerminalNode
+	FINSUPERINDICE() antlr.TerminalNode
+	TAMANO() antlr.TerminalNode
+	ATTR_VAL() antlr.TerminalNode
+	FINTAMANO() antlr.TerminalNode
 
 	// IsEstiloContext differentiates from other interfaces.
 	IsEstiloContext()
@@ -1158,10 +1314,14 @@ func NewEstiloContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 
 func (s *EstiloContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *EstiloContext) Texto() ITextoContext {
+func (s *EstiloContext) NEGRITA() antlr.TerminalNode {
+	return s.GetToken(L5ParserNEGRITA, 0)
+}
+
+func (s *EstiloContext) Contenido() IContenidoContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ITextoContext); ok {
+		if _, ok := ctx.(IContenidoContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -1171,7 +1331,63 @@ func (s *EstiloContext) Texto() ITextoContext {
 		return nil
 	}
 
-	return t.(ITextoContext)
+	return t.(IContenidoContext)
+}
+
+func (s *EstiloContext) FINNEGRITA() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINNEGRITA, 0)
+}
+
+func (s *EstiloContext) CURSIVA() antlr.TerminalNode {
+	return s.GetToken(L5ParserCURSIVA, 0)
+}
+
+func (s *EstiloContext) FINCURSIVA() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINCURSIVA, 0)
+}
+
+func (s *EstiloContext) SUBRAYADO() antlr.TerminalNode {
+	return s.GetToken(L5ParserSUBRAYADO, 0)
+}
+
+func (s *EstiloContext) FINSUBRAYADO() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINSUBRAYADO, 0)
+}
+
+func (s *EstiloContext) TACHADO() antlr.TerminalNode {
+	return s.GetToken(L5ParserTACHADO, 0)
+}
+
+func (s *EstiloContext) FINTACHADO() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINTACHADO, 0)
+}
+
+func (s *EstiloContext) SUBINDICE() antlr.TerminalNode {
+	return s.GetToken(L5ParserSUBINDICE, 0)
+}
+
+func (s *EstiloContext) FINSUBINDICE() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINSUBINDICE, 0)
+}
+
+func (s *EstiloContext) SUPERINDICE() antlr.TerminalNode {
+	return s.GetToken(L5ParserSUPERINDICE, 0)
+}
+
+func (s *EstiloContext) FINSUPERINDICE() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINSUPERINDICE, 0)
+}
+
+func (s *EstiloContext) TAMANO() antlr.TerminalNode {
+	return s.GetToken(L5ParserTAMANO, 0)
+}
+
+func (s *EstiloContext) ATTR_VAL() antlr.TerminalNode {
+	return s.GetToken(L5ParserATTR_VAL, 0)
+}
+
+func (s *EstiloContext) FINTAMANO() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINTAMANO, 0)
 }
 
 func (s *EstiloContext) GetRuleContext() antlr.RuleContext {
@@ -1197,168 +1413,176 @@ func (s *EstiloContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *L5Parser) Estilo() (localctx IEstiloContext) {
 	localctx = NewEstiloContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 12, L5ParserRULE_estilo)
-	p.SetState(90)
+	p.SetState(97)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case L5ParserT__10:
+	case L5ParserNEGRITA:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(62)
-			p.Match(L5ParserT__10)
-			if p.HasError() {
-				// Recognition error - abort rule
-				goto errorExit
-			}
-		}
-		{
-			p.SetState(63)
-			p.Texto()
-		}
-		{
-			p.SetState(64)
-			p.Match(L5ParserT__11)
-			if p.HasError() {
-				// Recognition error - abort rule
-				goto errorExit
-			}
-		}
-
-	case L5ParserT__12:
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(66)
-			p.Match(L5ParserT__12)
-			if p.HasError() {
-				// Recognition error - abort rule
-				goto errorExit
-			}
-		}
-		{
-			p.SetState(67)
-			p.Texto()
-		}
-		{
 			p.SetState(68)
-			p.Match(L5ParserT__13)
+			p.Match(L5ParserNEGRITA)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-
-	case L5ParserT__14:
-		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(69)
+			p.Contenido()
+		}
 		{
 			p.SetState(70)
-			p.Match(L5ParserT__14)
+			p.Match(L5ParserFINNEGRITA)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		{
-			p.SetState(71)
-			p.Texto()
-		}
+
+	case L5ParserCURSIVA:
+		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(72)
-			p.Match(L5ParserT__15)
+			p.Match(L5ParserCURSIVA)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-
-	case L5ParserT__16:
-		p.EnterOuterAlt(localctx, 4)
+		{
+			p.SetState(73)
+			p.Contenido()
+		}
 		{
 			p.SetState(74)
-			p.Match(L5ParserT__16)
+			p.Match(L5ParserFINCURSIVA)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		{
-			p.SetState(75)
-			p.Texto()
-		}
+
+	case L5ParserSUBRAYADO:
+		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(76)
-			p.Match(L5ParserT__17)
+			p.Match(L5ParserSUBRAYADO)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-
-	case L5ParserT__18:
-		p.EnterOuterAlt(localctx, 5)
+		{
+			p.SetState(77)
+			p.Contenido()
+		}
 		{
 			p.SetState(78)
-			p.Match(L5ParserT__18)
+			p.Match(L5ParserFINSUBRAYADO)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		{
-			p.SetState(79)
-			p.Texto()
-		}
+
+	case L5ParserTACHADO:
+		p.EnterOuterAlt(localctx, 4)
 		{
 			p.SetState(80)
-			p.Match(L5ParserT__19)
+			p.Match(L5ParserTACHADO)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-
-	case L5ParserT__20:
-		p.EnterOuterAlt(localctx, 6)
+		{
+			p.SetState(81)
+			p.Contenido()
+		}
 		{
 			p.SetState(82)
-			p.Match(L5ParserT__20)
-			if p.HasError() {
-				// Recognition error - abort rule
-				goto errorExit
-			}
-		}
-		{
-			p.SetState(83)
-			p.Texto()
-		}
-		{
-			p.SetState(84)
-			p.Match(L5ParserT__21)
+			p.Match(L5ParserFINTACHADO)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
 
-	case L5ParserT__22:
-		p.EnterOuterAlt(localctx, 7)
+	case L5ParserSUBINDICE:
+		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(86)
-			p.Match(L5ParserT__22)
+			p.SetState(84)
+			p.Match(L5ParserSUBINDICE)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
 		{
-			p.SetState(87)
-			p.Texto()
+			p.SetState(85)
+			p.Contenido()
 		}
 		{
+			p.SetState(86)
+			p.Match(L5ParserFINSUBINDICE)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case L5ParserSUPERINDICE:
+		p.EnterOuterAlt(localctx, 6)
+		{
 			p.SetState(88)
-			p.Match(L5ParserT__23)
+			p.Match(L5ParserSUPERINDICE)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(89)
+			p.Contenido()
+		}
+		{
+			p.SetState(90)
+			p.Match(L5ParserFINSUPERINDICE)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case L5ParserTAMANO:
+		p.EnterOuterAlt(localctx, 7)
+		{
+			p.SetState(92)
+			p.Match(L5ParserTAMANO)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(93)
+			p.Match(L5ParserATTR_VAL)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(94)
+			p.Contenido()
+		}
+		{
+			p.SetState(95)
+			p.Match(L5ParserFINTAMANO)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -1391,8 +1615,14 @@ type IFormatoContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	Texto() ITextoContext
-	Posicion() IPosicionContext
+	SANGRADO() antlr.TerminalNode
+	Contenido() IContenidoContext
+	FINSANGRADO() antlr.TerminalNode
+	PARRAFO() antlr.TerminalNode
+	FINPARRAFO() antlr.TerminalNode
+	Estilo() IEstiloContext
+	AllAtributo() []IAtributoContext
+	Atributo(i int) IAtributoContext
 
 	// IsFormatoContext differentiates from other interfaces.
 	IsFormatoContext()
@@ -1430,26 +1660,14 @@ func NewFormatoContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 
 func (s *FormatoContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *FormatoContext) Texto() ITextoContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ITextoContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ITextoContext)
+func (s *FormatoContext) SANGRADO() antlr.TerminalNode {
+	return s.GetToken(L5ParserSANGRADO, 0)
 }
 
-func (s *FormatoContext) Posicion() IPosicionContext {
+func (s *FormatoContext) Contenido() IContenidoContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IPosicionContext); ok {
+		if _, ok := ctx.(IContenidoContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -1459,7 +1677,76 @@ func (s *FormatoContext) Posicion() IPosicionContext {
 		return nil
 	}
 
-	return t.(IPosicionContext)
+	return t.(IContenidoContext)
+}
+
+func (s *FormatoContext) FINSANGRADO() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINSANGRADO, 0)
+}
+
+func (s *FormatoContext) PARRAFO() antlr.TerminalNode {
+	return s.GetToken(L5ParserPARRAFO, 0)
+}
+
+func (s *FormatoContext) FINPARRAFO() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINPARRAFO, 0)
+}
+
+func (s *FormatoContext) Estilo() IEstiloContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEstiloContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEstiloContext)
+}
+
+func (s *FormatoContext) AllAtributo() []IAtributoContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IAtributoContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IAtributoContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IAtributoContext); ok {
+			tst[i] = t.(IAtributoContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *FormatoContext) Atributo(i int) IAtributoContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IAtributoContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IAtributoContext)
 }
 
 func (s *FormatoContext) GetRuleContext() antlr.RuleContext {
@@ -1487,67 +1774,85 @@ func (p *L5Parser) Formato() (localctx IFormatoContext) {
 	p.EnterRule(localctx, 14, L5ParserRULE_formato)
 	var _la int
 
-	p.SetState(103)
+	p.SetState(116)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case L5ParserT__24:
+	case L5ParserSANGRADO:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(92)
-			p.Match(L5ParserT__24)
+			p.SetState(99)
+			p.Match(L5ParserSANGRADO)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
 		{
-			p.SetState(93)
-			p.Texto()
+			p.SetState(100)
+			p.Contenido()
 		}
 		{
-			p.SetState(94)
-			p.Match(L5ParserT__25)
+			p.SetState(101)
+			p.Match(L5ParserFINSANGRADO)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
 
-	case L5ParserT__26:
+	case L5ParserPARRAFO:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(96)
-			p.Match(L5ParserT__26)
+			p.SetState(103)
+			p.Match(L5ParserPARRAFO)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(98)
+		p.SetState(105)
+		p.GetErrorHandler().Sync(p)
+
+		if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 3, p.GetParserRuleContext()) == 1 {
+			{
+				p.SetState(104)
+				p.Estilo()
+			}
+
+		} else if p.HasError() { // JIM
+			goto errorExit
+		}
+		p.SetState(110)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
 
-		if _la == L5ParserT__28 {
+		for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&11274289152) != 0 {
 			{
-				p.SetState(97)
-				p.Posicion()
+				p.SetState(107)
+				p.Atributo()
 			}
 
+			p.SetState(112)
+			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+				goto errorExit
+			}
+			_la = p.GetTokenStream().LA(1)
 		}
 		{
-			p.SetState(100)
-			p.Texto()
+			p.SetState(113)
+			p.Contenido()
 		}
 		{
-			p.SetState(101)
-			p.Match(L5ParserT__27)
+			p.SetState(114)
+			p.Match(L5ParserFINPARRAFO)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -1572,103 +1877,205 @@ errorExit:
 	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
-// IPosicionContext is an interface to support dynamic dispatch.
-type IPosicionContext interface {
+// IAtributoContext is an interface to support dynamic dispatch.
+type IAtributoContext interface {
 	antlr.ParserRuleContext
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
 	// Getter signatures
+	POSICION_KW() antlr.TerminalNode
 	POSICION() antlr.TerminalNode
+	FINPOSICION() antlr.TerminalNode
+	ID() antlr.TerminalNode
+	ATTR_VAL() antlr.TerminalNode
+	FINID() antlr.TerminalNode
+	CLASE() antlr.TerminalNode
+	FINCLASE() antlr.TerminalNode
 
-	// IsPosicionContext differentiates from other interfaces.
-	IsPosicionContext()
+	// IsAtributoContext differentiates from other interfaces.
+	IsAtributoContext()
 }
 
-type PosicionContext struct {
+type AtributoContext struct {
 	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
-func NewEmptyPosicionContext() *PosicionContext {
-	var p = new(PosicionContext)
+func NewEmptyAtributoContext() *AtributoContext {
+	var p = new(AtributoContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = L5ParserRULE_posicion
+	p.RuleIndex = L5ParserRULE_atributo
 	return p
 }
 
-func InitEmptyPosicionContext(p *PosicionContext) {
+func InitEmptyAtributoContext(p *AtributoContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = L5ParserRULE_posicion
+	p.RuleIndex = L5ParserRULE_atributo
 }
 
-func (*PosicionContext) IsPosicionContext() {}
+func (*AtributoContext) IsAtributoContext() {}
 
-func NewPosicionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *PosicionContext {
-	var p = new(PosicionContext)
+func NewAtributoContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *AtributoContext {
+	var p = new(AtributoContext)
 
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = L5ParserRULE_posicion
+	p.RuleIndex = L5ParserRULE_atributo
 
 	return p
 }
 
-func (s *PosicionContext) GetParser() antlr.Parser { return s.parser }
+func (s *AtributoContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *PosicionContext) POSICION() antlr.TerminalNode {
+func (s *AtributoContext) POSICION_KW() antlr.TerminalNode {
+	return s.GetToken(L5ParserPOSICION_KW, 0)
+}
+
+func (s *AtributoContext) POSICION() antlr.TerminalNode {
 	return s.GetToken(L5ParserPOSICION, 0)
 }
 
-func (s *PosicionContext) GetRuleContext() antlr.RuleContext {
+func (s *AtributoContext) FINPOSICION() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINPOSICION, 0)
+}
+
+func (s *AtributoContext) ID() antlr.TerminalNode {
+	return s.GetToken(L5ParserID, 0)
+}
+
+func (s *AtributoContext) ATTR_VAL() antlr.TerminalNode {
+	return s.GetToken(L5ParserATTR_VAL, 0)
+}
+
+func (s *AtributoContext) FINID() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINID, 0)
+}
+
+func (s *AtributoContext) CLASE() antlr.TerminalNode {
+	return s.GetToken(L5ParserCLASE, 0)
+}
+
+func (s *AtributoContext) FINCLASE() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINCLASE, 0)
+}
+
+func (s *AtributoContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *PosicionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+func (s *AtributoContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *PosicionContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *AtributoContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(L5Listener); ok {
-		listenerT.EnterPosicion(s)
+		listenerT.EnterAtributo(s)
 	}
 }
 
-func (s *PosicionContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *AtributoContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(L5Listener); ok {
-		listenerT.ExitPosicion(s)
+		listenerT.ExitAtributo(s)
 	}
 }
 
-func (p *L5Parser) Posicion() (localctx IPosicionContext) {
-	localctx = NewPosicionContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, L5ParserRULE_posicion)
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(105)
-		p.Match(L5ParserT__28)
-		if p.HasError() {
-			// Recognition error - abort rule
-			goto errorExit
-		}
+func (p *L5Parser) Atributo() (localctx IAtributoContext) {
+	localctx = NewAtributoContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 16, L5ParserRULE_atributo)
+	p.SetState(127)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
 	}
-	{
-		p.SetState(106)
-		p.Match(L5ParserPOSICION)
-		if p.HasError() {
-			// Recognition error - abort rule
-			goto errorExit
+
+	switch p.GetTokenStream().LA(1) {
+	case L5ParserPOSICION_KW:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(118)
+			p.Match(L5ParserPOSICION_KW)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
-	}
-	{
-		p.SetState(107)
-		p.Match(L5ParserT__29)
-		if p.HasError() {
-			// Recognition error - abort rule
-			goto errorExit
+		{
+			p.SetState(119)
+			p.Match(L5ParserPOSICION)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
+		{
+			p.SetState(120)
+			p.Match(L5ParserFINPOSICION)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case L5ParserID:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(121)
+			p.Match(L5ParserID)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(122)
+			p.Match(L5ParserATTR_VAL)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(123)
+			p.Match(L5ParserFINID)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case L5ParserCLASE:
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(124)
+			p.Match(L5ParserCLASE)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(125)
+			p.Match(L5ParserATTR_VAL)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(126)
+			p.Match(L5ParserFINCLASE)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	default:
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 
 errorExit:
@@ -1692,6 +2099,8 @@ type IListaContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
+	LISTA() antlr.TerminalNode
+	FINLISTA() antlr.TerminalNode
 	AllElementoLista() []IElementoListaContext
 	ElementoLista(i int) IElementoListaContext
 
@@ -1730,6 +2139,14 @@ func NewListaContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 }
 
 func (s *ListaContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *ListaContext) LISTA() antlr.TerminalNode {
+	return s.GetToken(L5ParserLISTA, 0)
+}
+
+func (s *ListaContext) FINLISTA() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINLISTA, 0)
+}
 
 func (s *ListaContext) AllElementoLista() []IElementoListaContext {
 	children := s.GetChildren()
@@ -1799,27 +2216,27 @@ func (p *L5Parser) Lista() (localctx IListaContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(109)
-		p.Match(L5ParserT__30)
+		p.SetState(129)
+		p.Match(L5ParserLISTA)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(111)
+	p.SetState(131)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for ok := true; ok; ok = _la == L5ParserT__32 {
+	for ok := true; ok; ok = _la == L5ParserELEMENTOLISTA {
 		{
-			p.SetState(110)
+			p.SetState(130)
 			p.ElementoLista()
 		}
 
-		p.SetState(113)
+		p.SetState(133)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1827,8 +2244,8 @@ func (p *L5Parser) Lista() (localctx IListaContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(115)
-		p.Match(L5ParserT__31)
+		p.SetState(135)
+		p.Match(L5ParserFINLISTA)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1856,7 +2273,9 @@ type IElementoListaContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	Texto() ITextoContext
+	ELEMENTOLISTA() antlr.TerminalNode
+	Contenido() IContenidoContext
+	FINELEMENTOLISTA() antlr.TerminalNode
 
 	// IsElementoListaContext differentiates from other interfaces.
 	IsElementoListaContext()
@@ -1894,10 +2313,14 @@ func NewElementoListaContext(parser antlr.Parser, parent antlr.ParserRuleContext
 
 func (s *ElementoListaContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *ElementoListaContext) Texto() ITextoContext {
+func (s *ElementoListaContext) ELEMENTOLISTA() antlr.TerminalNode {
+	return s.GetToken(L5ParserELEMENTOLISTA, 0)
+}
+
+func (s *ElementoListaContext) Contenido() IContenidoContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ITextoContext); ok {
+		if _, ok := ctx.(IContenidoContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -1907,7 +2330,11 @@ func (s *ElementoListaContext) Texto() ITextoContext {
 		return nil
 	}
 
-	return t.(ITextoContext)
+	return t.(IContenidoContext)
+}
+
+func (s *ElementoListaContext) FINELEMENTOLISTA() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINELEMENTOLISTA, 0)
 }
 
 func (s *ElementoListaContext) GetRuleContext() antlr.RuleContext {
@@ -1935,20 +2362,20 @@ func (p *L5Parser) ElementoLista() (localctx IElementoListaContext) {
 	p.EnterRule(localctx, 20, L5ParserRULE_elementoLista)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(117)
-		p.Match(L5ParserT__32)
+		p.SetState(137)
+		p.Match(L5ParserELEMENTOLISTA)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
 	{
-		p.SetState(118)
-		p.Texto()
+		p.SetState(138)
+		p.Contenido()
 	}
 	{
-		p.SetState(119)
-		p.Match(L5ParserT__33)
+		p.SetState(139)
+		p.Match(L5ParserFINELEMENTOLISTA)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -1976,8 +2403,14 @@ type IEnlaceContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	AllTexto() []ITextoContext
-	Texto(i int) ITextoContext
+	ENLACE() antlr.TerminalNode
+	CON() antlr.TerminalNode
+	ATTR_VAL() antlr.TerminalNode
+	FINCON() antlr.TerminalNode
+	MOSTRAR() antlr.TerminalNode
+	Contenido() IContenidoContext
+	FINMOSTRAR() antlr.TerminalNode
+	FINENLACE() antlr.TerminalNode
 
 	// IsEnlaceContext differentiates from other interfaces.
 	IsEnlaceContext()
@@ -2015,37 +2448,32 @@ func NewEnlaceContext(parser antlr.Parser, parent antlr.ParserRuleContext, invok
 
 func (s *EnlaceContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *EnlaceContext) AllTexto() []ITextoContext {
-	children := s.GetChildren()
-	len := 0
-	for _, ctx := range children {
-		if _, ok := ctx.(ITextoContext); ok {
-			len++
-		}
-	}
-
-	tst := make([]ITextoContext, len)
-	i := 0
-	for _, ctx := range children {
-		if t, ok := ctx.(ITextoContext); ok {
-			tst[i] = t.(ITextoContext)
-			i++
-		}
-	}
-
-	return tst
+func (s *EnlaceContext) ENLACE() antlr.TerminalNode {
+	return s.GetToken(L5ParserENLACE, 0)
 }
 
-func (s *EnlaceContext) Texto(i int) ITextoContext {
+func (s *EnlaceContext) CON() antlr.TerminalNode {
+	return s.GetToken(L5ParserCON, 0)
+}
+
+func (s *EnlaceContext) ATTR_VAL() antlr.TerminalNode {
+	return s.GetToken(L5ParserATTR_VAL, 0)
+}
+
+func (s *EnlaceContext) FINCON() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINCON, 0)
+}
+
+func (s *EnlaceContext) MOSTRAR() antlr.TerminalNode {
+	return s.GetToken(L5ParserMOSTRAR, 0)
+}
+
+func (s *EnlaceContext) Contenido() IContenidoContext {
 	var t antlr.RuleContext
-	j := 0
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ITextoContext); ok {
-			if j == i {
-				t = ctx.(antlr.RuleContext)
-				break
-			}
-			j++
+		if _, ok := ctx.(IContenidoContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
 		}
 	}
 
@@ -2053,7 +2481,15 @@ func (s *EnlaceContext) Texto(i int) ITextoContext {
 		return nil
 	}
 
-	return t.(ITextoContext)
+	return t.(IContenidoContext)
+}
+
+func (s *EnlaceContext) FINMOSTRAR() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINMOSTRAR, 0)
+}
+
+func (s *EnlaceContext) FINENLACE() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINENLACE, 0)
 }
 
 func (s *EnlaceContext) GetRuleContext() antlr.RuleContext {
@@ -2081,56 +2517,410 @@ func (p *L5Parser) Enlace() (localctx IEnlaceContext) {
 	p.EnterRule(localctx, 22, L5ParserRULE_enlace)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(121)
-		p.Match(L5ParserT__34)
+		p.SetState(141)
+		p.Match(L5ParserENLACE)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
 	{
-		p.SetState(122)
-		p.Match(L5ParserT__35)
+		p.SetState(142)
+		p.Match(L5ParserCON)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
 	{
-		p.SetState(123)
-		p.Texto()
-	}
-	{
-		p.SetState(124)
-		p.Match(L5ParserT__36)
+		p.SetState(143)
+		p.Match(L5ParserATTR_VAL)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
 	{
-		p.SetState(125)
-		p.Match(L5ParserT__37)
+		p.SetState(144)
+		p.Match(L5ParserFINCON)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
 	{
-		p.SetState(126)
-		p.Texto()
-	}
-	{
-		p.SetState(127)
-		p.Match(L5ParserT__38)
+		p.SetState(145)
+		p.Match(L5ParserMOSTRAR)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
 	{
-		p.SetState(128)
-		p.Match(L5ParserT__39)
+		p.SetState(146)
+		p.Contenido()
+	}
+	{
+		p.SetState(147)
+		p.Match(L5ParserFINMOSTRAR)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(148)
+		p.Match(L5ParserFINENLACE)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IImagenContext is an interface to support dynamic dispatch.
+type IImagenContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	IMAGEN() antlr.TerminalNode
+	SRC() antlr.TerminalNode
+	ATTR_VAL() antlr.TerminalNode
+	FINSRC() antlr.TerminalNode
+	FINIMAGEN() antlr.TerminalNode
+	ALT() antlr.TerminalNode
+	Contenido() IContenidoContext
+	FINALT() antlr.TerminalNode
+
+	// IsImagenContext differentiates from other interfaces.
+	IsImagenContext()
+}
+
+type ImagenContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyImagenContext() *ImagenContext {
+	var p = new(ImagenContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = L5ParserRULE_imagen
+	return p
+}
+
+func InitEmptyImagenContext(p *ImagenContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = L5ParserRULE_imagen
+}
+
+func (*ImagenContext) IsImagenContext() {}
+
+func NewImagenContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ImagenContext {
+	var p = new(ImagenContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = L5ParserRULE_imagen
+
+	return p
+}
+
+func (s *ImagenContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *ImagenContext) IMAGEN() antlr.TerminalNode {
+	return s.GetToken(L5ParserIMAGEN, 0)
+}
+
+func (s *ImagenContext) SRC() antlr.TerminalNode {
+	return s.GetToken(L5ParserSRC, 0)
+}
+
+func (s *ImagenContext) ATTR_VAL() antlr.TerminalNode {
+	return s.GetToken(L5ParserATTR_VAL, 0)
+}
+
+func (s *ImagenContext) FINSRC() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINSRC, 0)
+}
+
+func (s *ImagenContext) FINIMAGEN() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINIMAGEN, 0)
+}
+
+func (s *ImagenContext) ALT() antlr.TerminalNode {
+	return s.GetToken(L5ParserALT, 0)
+}
+
+func (s *ImagenContext) Contenido() IContenidoContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IContenidoContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IContenidoContext)
+}
+
+func (s *ImagenContext) FINALT() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINALT, 0)
+}
+
+func (s *ImagenContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ImagenContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *ImagenContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(L5Listener); ok {
+		listenerT.EnterImagen(s)
+	}
+}
+
+func (s *ImagenContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(L5Listener); ok {
+		listenerT.ExitImagen(s)
+	}
+}
+
+func (p *L5Parser) Imagen() (localctx IImagenContext) {
+	localctx = NewImagenContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 24, L5ParserRULE_imagen)
+	var _la int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(150)
+		p.Match(L5ParserIMAGEN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(151)
+		p.Match(L5ParserSRC)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(152)
+		p.Match(L5ParserATTR_VAL)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(153)
+		p.Match(L5ParserFINSRC)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	p.SetState(158)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	if _la == L5ParserALT {
+		{
+			p.SetState(154)
+			p.Match(L5ParserALT)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(155)
+			p.Contenido()
+		}
+		{
+			p.SetState(156)
+			p.Match(L5ParserFINALT)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	}
+	{
+		p.SetState(160)
+		p.Match(L5ParserFINIMAGEN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IEncabezadoContext is an interface to support dynamic dispatch.
+type IEncabezadoContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	ENCABEZADO() antlr.TerminalNode
+	ATTR_VAL() antlr.TerminalNode
+	Contenido() IContenidoContext
+	FINENCABEZADO() antlr.TerminalNode
+
+	// IsEncabezadoContext differentiates from other interfaces.
+	IsEncabezadoContext()
+}
+
+type EncabezadoContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyEncabezadoContext() *EncabezadoContext {
+	var p = new(EncabezadoContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = L5ParserRULE_encabezado
+	return p
+}
+
+func InitEmptyEncabezadoContext(p *EncabezadoContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = L5ParserRULE_encabezado
+}
+
+func (*EncabezadoContext) IsEncabezadoContext() {}
+
+func NewEncabezadoContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *EncabezadoContext {
+	var p = new(EncabezadoContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = L5ParserRULE_encabezado
+
+	return p
+}
+
+func (s *EncabezadoContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *EncabezadoContext) ENCABEZADO() antlr.TerminalNode {
+	return s.GetToken(L5ParserENCABEZADO, 0)
+}
+
+func (s *EncabezadoContext) ATTR_VAL() antlr.TerminalNode {
+	return s.GetToken(L5ParserATTR_VAL, 0)
+}
+
+func (s *EncabezadoContext) Contenido() IContenidoContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IContenidoContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IContenidoContext)
+}
+
+func (s *EncabezadoContext) FINENCABEZADO() antlr.TerminalNode {
+	return s.GetToken(L5ParserFINENCABEZADO, 0)
+}
+
+func (s *EncabezadoContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *EncabezadoContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *EncabezadoContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(L5Listener); ok {
+		listenerT.EnterEncabezado(s)
+	}
+}
+
+func (s *EncabezadoContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(L5Listener); ok {
+		listenerT.ExitEncabezado(s)
+	}
+}
+
+func (p *L5Parser) Encabezado() (localctx IEncabezadoContext) {
+	localctx = NewEncabezadoContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 26, L5ParserRULE_encabezado)
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(162)
+		p.Match(L5ParserENCABEZADO)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(163)
+		p.Match(L5ParserATTR_VAL)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(164)
+		p.Contenido()
+	}
+	{
+		p.SetState(165)
+		p.Match(L5ParserFINENCABEZADO)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -2156,6 +2946,11 @@ type ISingletonContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	LINEA() antlr.TerminalNode
+	SALTO() antlr.TerminalNode
+
 	// IsSingletonContext differentiates from other interfaces.
 	IsSingletonContext()
 }
@@ -2191,6 +2986,15 @@ func NewSingletonContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 }
 
 func (s *SingletonContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *SingletonContext) LINEA() antlr.TerminalNode {
+	return s.GetToken(L5ParserLINEA, 0)
+}
+
+func (s *SingletonContext) SALTO() antlr.TerminalNode {
+	return s.GetToken(L5ParserSALTO, 0)
+}
+
 func (s *SingletonContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -2213,15 +3017,15 @@ func (s *SingletonContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *L5Parser) Singleton() (localctx ISingletonContext) {
 	localctx = NewSingletonContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 24, L5ParserRULE_singleton)
+	p.EnterRule(localctx, 28, L5ParserRULE_singleton)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(130)
+		p.SetState(167)
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == L5ParserT__40 || _la == L5ParserT__41) {
+		if !(_la == L5ParserLINEA || _la == L5ParserSALTO) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -2242,105 +3046,215 @@ errorExit:
 	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
-// ITextoContext is an interface to support dynamic dispatch.
-type ITextoContext interface {
+// IContenidoContext is an interface to support dynamic dispatch.
+type IContenidoContext interface {
 	antlr.ParserRuleContext
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	AllTEXTO() []antlr.TerminalNode
-	TEXTO(i int) antlr.TerminalNode
+	AllATTR_VAL() []antlr.TerminalNode
+	ATTR_VAL(i int) antlr.TerminalNode
+	AllElemento() []IElementoContext
+	Elemento(i int) IElementoContext
+	AllEstilo() []IEstiloContext
+	Estilo(i int) IEstiloContext
 
-	// IsTextoContext differentiates from other interfaces.
-	IsTextoContext()
+	// IsContenidoContext differentiates from other interfaces.
+	IsContenidoContext()
 }
 
-type TextoContext struct {
+type ContenidoContext struct {
 	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
-func NewEmptyTextoContext() *TextoContext {
-	var p = new(TextoContext)
+func NewEmptyContenidoContext() *ContenidoContext {
+	var p = new(ContenidoContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = L5ParserRULE_texto
+	p.RuleIndex = L5ParserRULE_contenido
 	return p
 }
 
-func InitEmptyTextoContext(p *TextoContext) {
+func InitEmptyContenidoContext(p *ContenidoContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = L5ParserRULE_texto
+	p.RuleIndex = L5ParserRULE_contenido
 }
 
-func (*TextoContext) IsTextoContext() {}
+func (*ContenidoContext) IsContenidoContext() {}
 
-func NewTextoContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TextoContext {
-	var p = new(TextoContext)
+func NewContenidoContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ContenidoContext {
+	var p = new(ContenidoContext)
 
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = L5ParserRULE_texto
+	p.RuleIndex = L5ParserRULE_contenido
 
 	return p
 }
 
-func (s *TextoContext) GetParser() antlr.Parser { return s.parser }
+func (s *ContenidoContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *TextoContext) AllTEXTO() []antlr.TerminalNode {
-	return s.GetTokens(L5ParserTEXTO)
+func (s *ContenidoContext) AllATTR_VAL() []antlr.TerminalNode {
+	return s.GetTokens(L5ParserATTR_VAL)
 }
 
-func (s *TextoContext) TEXTO(i int) antlr.TerminalNode {
-	return s.GetToken(L5ParserTEXTO, i)
+func (s *ContenidoContext) ATTR_VAL(i int) antlr.TerminalNode {
+	return s.GetToken(L5ParserATTR_VAL, i)
 }
 
-func (s *TextoContext) GetRuleContext() antlr.RuleContext {
+func (s *ContenidoContext) AllElemento() []IElementoContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IElementoContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IElementoContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IElementoContext); ok {
+			tst[i] = t.(IElementoContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *ContenidoContext) Elemento(i int) IElementoContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IElementoContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IElementoContext)
+}
+
+func (s *ContenidoContext) AllEstilo() []IEstiloContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IEstiloContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IEstiloContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IEstiloContext); ok {
+			tst[i] = t.(IEstiloContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *ContenidoContext) Estilo(i int) IEstiloContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEstiloContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IEstiloContext)
+}
+
+func (s *ContenidoContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *TextoContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+func (s *ContenidoContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *TextoContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *ContenidoContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(L5Listener); ok {
-		listenerT.EnterTexto(s)
+		listenerT.EnterContenido(s)
 	}
 }
 
-func (s *TextoContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *ContenidoContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(L5Listener); ok {
-		listenerT.ExitTexto(s)
+		listenerT.ExitContenido(s)
 	}
 }
 
-func (p *L5Parser) Texto() (localctx ITextoContext) {
-	localctx = NewTextoContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 26, L5ParserRULE_texto)
+func (p *L5Parser) Contenido() (localctx IContenidoContext) {
+	localctx = NewContenidoContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 30, L5ParserRULE_contenido)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(133)
+	p.SetState(172)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for ok := true; ok; ok = _la == L5ParserTEXTO {
-		{
-			p.SetState(132)
-			p.Match(L5ParserTEXTO)
-			if p.HasError() {
-				// Recognition error - abort rule
-				goto errorExit
-			}
+	for ok := true; ok; ok = ((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&317539542396217344) != 0) {
+		p.SetState(172)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
 		}
 
-		p.SetState(135)
+		switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 9, p.GetParserRuleContext()) {
+		case 1:
+			{
+				p.SetState(169)
+				p.Match(L5ParserATTR_VAL)
+				if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+				}
+			}
+
+		case 2:
+			{
+				p.SetState(170)
+				p.Elemento()
+			}
+
+		case 3:
+			{
+				p.SetState(171)
+				p.Estilo()
+			}
+
+		case antlr.ATNInvalidAltNumber:
+			goto errorExit
+		}
+
+		p.SetState(174)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit

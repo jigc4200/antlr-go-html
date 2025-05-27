@@ -32,8 +32,8 @@ type L5Listener interface {
 	// EnterFormato is called when entering the formato production.
 	EnterFormato(c *FormatoContext)
 
-	// EnterPosicion is called when entering the posicion production.
-	EnterPosicion(c *PosicionContext)
+	// EnterAtributo is called when entering the atributo production.
+	EnterAtributo(c *AtributoContext)
 
 	// EnterLista is called when entering the lista production.
 	EnterLista(c *ListaContext)
@@ -44,11 +44,17 @@ type L5Listener interface {
 	// EnterEnlace is called when entering the enlace production.
 	EnterEnlace(c *EnlaceContext)
 
+	// EnterImagen is called when entering the imagen production.
+	EnterImagen(c *ImagenContext)
+
+	// EnterEncabezado is called when entering the encabezado production.
+	EnterEncabezado(c *EncabezadoContext)
+
 	// EnterSingleton is called when entering the singleton production.
 	EnterSingleton(c *SingletonContext)
 
-	// EnterTexto is called when entering the texto production.
-	EnterTexto(c *TextoContext)
+	// EnterContenido is called when entering the contenido production.
+	EnterContenido(c *ContenidoContext)
 
 	// ExitPagina is called when exiting the pagina production.
 	ExitPagina(c *PaginaContext)
@@ -74,8 +80,8 @@ type L5Listener interface {
 	// ExitFormato is called when exiting the formato production.
 	ExitFormato(c *FormatoContext)
 
-	// ExitPosicion is called when exiting the posicion production.
-	ExitPosicion(c *PosicionContext)
+	// ExitAtributo is called when exiting the atributo production.
+	ExitAtributo(c *AtributoContext)
 
 	// ExitLista is called when exiting the lista production.
 	ExitLista(c *ListaContext)
@@ -86,9 +92,15 @@ type L5Listener interface {
 	// ExitEnlace is called when exiting the enlace production.
 	ExitEnlace(c *EnlaceContext)
 
+	// ExitImagen is called when exiting the imagen production.
+	ExitImagen(c *ImagenContext)
+
+	// ExitEncabezado is called when exiting the encabezado production.
+	ExitEncabezado(c *EncabezadoContext)
+
 	// ExitSingleton is called when exiting the singleton production.
 	ExitSingleton(c *SingletonContext)
 
-	// ExitTexto is called when exiting the texto production.
-	ExitTexto(c *TextoContext)
+	// ExitContenido is called when exiting the contenido production.
+	ExitContenido(c *ContenidoContext)
 }

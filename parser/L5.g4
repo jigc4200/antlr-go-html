@@ -1,10 +1,12 @@
 grammar L5;
 
-pagina       : 'Pagina' cabecera cuerpo pie 'FinPagina' ;
-cabecera     : 'Cabecera' titulo 'FinCabecera' ;
-titulo       : 'Titulo' texto 'FinTitulo' ;
-cuerpo       : 'Cuerpo' elemento* 'FinCuerpo' ;
-pie          : 'Ppagina' texto 'FPpagina' ;
+// === Reglas principales ===
+
+pagina       : PAGINA cabecera cuerpo pie FINPAGINA ;
+cabecera     : CABECERA titulo FINCABECERA ;
+titulo       : TITULO contenido FINTITULO ;
+cuerpo       : CUERPO elemento* FINCUERPO ;
+pie          : PPAGINA contenido FPPAGINA ;
 
 elemento
     : estilo
@@ -12,52 +14,129 @@ elemento
     | lista
     | enlace
     | singleton
+    | imagen
+    | encabezado
     ;
 
 estilo
-    : 'Negrita' texto 'FinNegrita'
-    | 'Cursiva' texto 'FinCursiva'
-    | 'Subrayado' texto 'FinSubrayado'
-    | 'Tachado' texto 'FinTachado'
-    | 'Subindice' texto 'FinSubindice'
-    | 'Superindice' texto 'FinSuperindice'
-    | 'Tamaño' texto 'FinTamaño'
+    : NEGRITA contenido FINNEGRITA
+    | CURSIVA contenido FINCURSIVA
+    | SUBRAYADO contenido FINSUBRAYADO
+    | TACHADO contenido FINTACHADO
+    | SUBINDICE contenido FINSUBINDICE
+    | SUPERINDICE contenido FINSUPERINDICE
+    | TAMANO ATTR_VAL contenido FINTAMANO   // Tamaño 14 texto FinTamaño
     ;
 
 formato
-    : 'Sangrado' texto 'FinSangrado'
-    | 'Parrafo' posicion? texto 'FinParrafo'
+    : SANGRADO contenido FINSANGRADO
+    | PARRAFO estilo? atributo* contenido FINPARRAFO
     ;
 
-posicion
-    : 'Posicion' POSICION 'FinPosicion'
-    ;
-
-POSICION : 'izquierda' | 'centrada' | 'derecha' 
+atributo
+    : POSICION_KW POSICION FINPOSICION
+    | ID ATTR_VAL FINID
+    | CLASE ATTR_VAL FINCLASE
     ;
 
 lista
-    : 'Lista' elementoLista+ 'FinLista'
+    : LISTA elementoLista+ FINLISTA
     ;
 
 elementoLista
-    : 'ElementoLista' texto 'FinElementoLista'
+    : ELEMENTOLISTA contenido FINELEMENTOLISTA
     ;
 
 enlace
-    : 'Enlace'
-      'Con' texto 'FinCon'
-      'Mostrar' texto 'FinMostrar'
-      'FinEnlace'
+    : ENLACE
+      CON ATTR_VAL FINCON
+      MOSTRAR contenido FINMOSTRAR
+      FINENLACE
     ;
+
+imagen
+    : IMAGEN
+      SRC ATTR_VAL FINSRC
+      (ALT contenido FINALT)?
+      FINIMAGEN
+    ;
+
+encabezado
+    : ENCABEZADO ATTR_VAL contenido FINENCABEZADO  // Encabezado 2 ... FinEncabezado => <h2>
+    ;
+
 singleton
-    : 'Linea'
-    | 'Salto'
+    : LINEA
+    | SALTO
     ;
 
-texto : TEXTO+ ;
+contenido
+    : (ATTR_VAL| elemento | estilo )+
+    ;
 
-TEXTO : ~[<>\r\n \t]+ ;
+// === Tokens ===
+
+// Palabras clave
+PAGINA          : 'Pagina' ;
+CABECERA        : 'Cabecera' ;
+TITULO          : 'Titulo' ;
+FINTITULO       : 'FinTitulo' ;
+FINCABECERA     : 'FinCabecera' ;
+CUERPO          : 'Cuerpo' ;
+FINCUERPO       : 'FinCuerpo' ;
+PPAGINA         : 'Ppagina' ;
+FPPAGINA        : 'FPpagina' ;
+FINPAGINA       : 'FinPagina' ; // Added missing token definition
+NEGRITA         : 'Negrita' ;
+FINNEGRITA      : 'FinNegrita' ;
+CURSIVA         : 'Cursiva' ;
+FINCURSIVA      : 'FinCursiva' ;
+SUBRAYADO       : 'Subrayado' ;
+FINSUBRAYADO    : 'FinSubrayado' ;
+TACHADO         : 'Tachado' ;
+FINTACHADO      : 'FinTachado' ;
+SUBINDICE       : 'Subindice' ;
+FINSUBINDICE    : 'FinSubindice' ;
+SUPERINDICE     : 'Superindice' ;
+FINSUPERINDICE  : 'FinSuperindice' ;
+TAMANO          : 'Tamaño' ;
+FINTAMANO       : 'FinTamaño' ;
+SANGRADO        : 'Sangrado' ;
+FINSANGRADO     : 'FinSangrado' ;
+PARRAFO         : 'Parrafo' ;
+FINPARRAFO      : 'FinParrafo' ;
+POSICION_KW     : 'Posicion' ; // Renombrado para evitar conflicto con token POSICION
+FINPOSICION     : 'FinPosicion' ;
+ID              : 'Id' ;
+FINID           : 'FinId' ;
+CLASE           : 'Clase' ;
+FINCLASE        : 'FinClase' ;
+LISTA           : 'Lista' ;
+FINLISTA        : 'FinLista' ;
+ELEMENTOLISTA   : 'ElementoLista' ;
+FINELEMENTOLISTA: 'FinElementoLista' ;
+ENLACE          : 'Enlace' ;
+FINENLACE       : 'FinEnlace' ;
+CON             : 'Con' ;
+FINCON          : 'FinCon' ;
+MOSTRAR         : 'Mostrar' ;
+FINMOSTRAR      : 'FinMostrar' ;
+IMAGEN          : 'Imagen' ;
+FINIMAGEN       : 'FinImagen' ;
+SRC             : 'Src' ;
+FINSRC          : 'FinSrc' ;
+ALT             : 'Alt' ;
+FINALT          : 'FinAlt' ;
+ENCABEZADO      : 'Encabezado' ;
+FINENCABEZADO   : 'FinEncabezado' ;
+LINEA           : 'Linea' ;
+SALTO           : 'Salto' ;
+ESTILO          : 'Estilo' ;
+FINESTILO       : 'FinEstilo' ;
 
 
-WS : [ \t\r\n]+ -> skip ;
+// Otros tokens
+POSICION   : 'izquierda' | 'centrada' | 'derecha' ;
+ATTR_VAL   : '"' (~["\r\n])* '"' ; // atributo como "valor"
+WS         : [ \t\r\n]+ -> skip ;
+//TEXTO      : ~[\r\n<>"\t]+ ; // Cualquier cosa que no sea palabras clave, delimitadores, etc.

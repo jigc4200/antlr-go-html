@@ -1,11 +1,12 @@
+// Package main provides an ANTLR listener for converting a custom HTML-like syntax to HTML.
 package main
 
 import (
-	"antlr-go-html/parser" // Asegúrate que esta ruta sea correcta
+	"antlr-go-html/parser"
 	"log"
 	"strings"
 
-	"github.com/antlr4-go/antlr/v4" // Importación común para antlr.ParserRuleContext
+	"github.com/antlr4-go/antlr/v4"
 )
 
 type HTMLListener struct {
@@ -21,25 +22,6 @@ func (l *HTMLListener) HTML() string {
 	return l.html.String()
 }
 
-// Helper function para reconstruir el texto con espacios
-func (l *HTMLListener) reconstructTextFromContext(textoCtx parser.ITextoContext) string {
-	if textoCtx == nil {
-		return ""
-	}
-
-	var sb strings.Builder
-	// ITextoContext debería tener AllTEXTO() que devuelve []antlr.TerminalNode
-	textTokens := textoCtx.AllTEXTO()
-
-	for i, tokenNode := range textTokens {
-		sb.WriteString(tokenNode.GetText())
-		if i < len(textTokens)-1 { // Si no es el último token
-			sb.WriteString(" ") // Añade el espacio
-		}
-	}
-	return sb.String()
-}
-
 func (l *HTMLListener) EnterPagina(ctx *parser.PaginaContext) {
 	l.html.WriteString("<html><body>\n")
 }
@@ -49,40 +31,16 @@ func (l *HTMLListener) ExitPagina(ctx *parser.PaginaContext) {
 }
 
 func (l *HTMLListener) EnterTitulo(ctx *parser.TituloContext) {
-	l.html.WriteString("<h1>")
-}
-
-func (l *HTMLListener) ExitTitulo(ctx *parser.TituloContext) {
-	// El texto del título ya habrá sido escrito por EnterTexto
-	l.html.WriteString("</h1>\n")
-}
-
-// EnterTexto modificado
-func (l *HTMLListener) EnterTexto(ctx *parser.TextoContext) {
-	parent := ctx.GetParent()
-	// Si el padre es EnlaceContext, EnterEnlace se encargará de este texto.
-	if _, ok := parent.(*parser.EnlaceContext); ok {
-		return
+	// Get text from the 'contenido' rule
+	if ctx.Contenido() != nil {
+		l.html.WriteString("<h1>" + stripQuotes(ctx.Contenido().GetText()) + "</h1>\n")
+	} else {
+		log.Println("Advertencia: Título sin contenido")
+		l.html.WriteString("<h1></h1>\n")
 	}
-
-	reconstructedText := l.reconstructTextFromContext(ctx)
-	l.html.WriteString(reconstructedText)
 }
 
-// ------ Estilos ------
 func (l *HTMLListener) EnterEstilo(ctx *parser.EstiloContext) {
-	// Usamos ctx.GetChild(0) para obtener el token específico del tipo de estilo (Negrita, Cursiva, etc.)
-	// ya que GetStart() se refiere al primer token de toda la regla 'estilo', que es el tag de inicio.
-	var estiloTagToken antlr.Token
-	// El primer hijo de EstiloContext es el TerminalNode del tag (Ej: 'Negrita')
-	if tn, ok := ctx.GetChild(0).(antlr.TerminalNode); ok {
-		estiloTagToken = tn.GetSymbol()
-	} else {
-		log.Println("Advertencia: No se pudo determinar el tipo de estilo.")
-		l.html.WriteString("<span>") // Fallback
-		return
-	}
-
 	tagMapping := map[string]string{
 		"Negrita":     "b",
 		"Cursiva":     "i",
@@ -90,98 +48,85 @@ func (l *HTMLListener) EnterEstilo(ctx *parser.EstiloContext) {
 		"Tachado":     "s",
 		"Subindice":   "sub",
 		"Superindice": "sup",
-		// Para Tamaño, el tag de apertura completo se define aquí
-		"Tamaño": "span style='font-size: larger;'",
-	}
-	// Usamos el texto del token que identifica el tipo de estilo.
-	tag, ok := tagMapping[estiloTagToken.GetText()]
-	if !ok {
-		log.Println("Advertencia: Tag de estilo desconocido -", estiloTagToken.GetText())
-		tag = "span" // Fallback
+		"Tamaño":      "span", // Handle style attribute separately
 	}
 
-	// Si el tag ya incluye atributos (como en 'Tamaño'), no añadimos '<' y '>' dos veces.
-	if strings.Contains(tag, " ") { // Heurística simple para tags con atributos
-		l.html.WriteString("<" + tag + ">")
-	} else {
-		l.html.WriteString("<" + tag + ">")
+	// Determine the tag based on the starting token
+	startToken := ctx.GetStart().GetText()
+	tag, ok := tagMapping[startToken]
+	if !ok {
+		log.Println("Estilo desconocido:", startToken)
+		tag = "span" // Default to span for unknown styles
 	}
+
+	// Handle Tamaño style with font-size attribute
+	styleAttr := ""
+	if startToken == "Tamaño" {
+		if ctx.ATTR_VAL() != nil {
+			// Extract the value from the ATTR_VAL token (e.g., "14px")
+			fontSize := strings.Trim(ctx.ATTR_VAL().GetText(), `"`)
+			styleAttr = " style='font-size: " + fontSize + ";'"
+		} else {
+			log.Println("Advertencia: Estilo Tamaño sin valor de tamaño")
+		}
+	}
+
+	l.html.WriteString("<" + tag + styleAttr + ">")
+
+	// Get text from the 'contenido' rule
+	if ctx.Contenido() != nil {
+		l.html.WriteString(stripQuotes(ctx.Contenido().GetText()))
+
+	} else {
+		log.Println("Advertencia:", startToken, "sin contenido")
+	}
+
+	// Close the tag, handling the case of 'span style...'
+	closeTag := strings.Split(tag, " ")[0]
+	l.html.WriteString("</" + closeTag + ">")
 }
 
-func (l *HTMLListener) ExitEstilo(ctx *parser.EstiloContext) {
-	var estiloTagToken antlr.Token
-	if tn, ok := ctx.GetChild(0).(antlr.TerminalNode); ok {
-		estiloTagToken = tn.GetSymbol()
-	} else {
-		log.Println("Advertencia: No se pudo determinar el tipo de estilo al salir.")
-		l.html.WriteString("</span>") // Fallback
-		return
-	}
-	// Para el cierre, solo necesitamos el nombre del tag
-	tagMapping := map[string]string{
-		"Negrita":     "b",
-		"Cursiva":     "i",
-		"Subrayado":   "u",
-		"Tachado":     "s",
-		"Subindice":   "sub",
-		"Superindice": "sup",
-		"Tamaño":      "span", // Tag de cierre simple
-	}
-	tag, ok := tagMapping[estiloTagToken.GetText()]
-	if !ok {
-		log.Println("Advertencia: Tag de estilo desconocido al salir -", estiloTagToken.GetText())
-		tag = "span" // Fallback
-	}
-	l.html.WriteString("</" + tag + ">")
-}
-
-// ------ Formato ------
 func (l *HTMLListener) EnterFormato(ctx *parser.FormatoContext) {
-	// Usamos ctx.GetChild(0) para obtener el token específico del tipo de formato (Sangrado, Parrafo)
-	var formatoTagToken antlr.Token
-	if tn, ok := ctx.GetChild(0).(antlr.TerminalNode); ok {
-		formatoTagToken = tn.GetSymbol()
-	} else {
-		log.Println("Advertencia: No se pudo determinar el tipo de formato.")
-		// Manejar el error o usar un fallback
-		return
-	}
-
-	if formatoTagToken.GetText() == "Sangrado" {
+	// Check which alternative of the 'formato' rule was matched
+	// The first child will be the token 'Sangrado' or 'Parrafo'
+	switch ctx.GetChild(0).(antlr.TerminalNode).GetSymbol().GetTokenType() {
+	case parser.L5ParserSANGRADO: // 'Sangrado'
 		l.html.WriteString("<div style='margin-left: 40px;'>")
-	} else { // Parrafo
-		align := "left" // Valor por defecto
-		// ctx.Posicion() puede ser nil si la posición es opcional (posicion?)
-		if ctx.Posicion() != nil && ctx.Posicion().POSICION() != nil {
-			switch ctx.Posicion().POSICION().GetText() {
-			case "centrada":
-				align = "center"
-			case "derecha":
-				align = "right"
+		if ctx.Contenido() != nil {
+			l.html.WriteString(stripQuotes(ctx.Contenido().GetText()))
+
+		} else {
+			log.Println("Advertencia: Sangrado sin contenido")
+		}
+		l.html.WriteString("</div>\n")
+	case parser.L5ParserPARRAFO: // 'Parrafo'
+		align := "left"
+		// Iterate through attributes to find Posicion
+		for _, attrCtx := range ctx.AllAtributo() {
+			// Check if the POSICION token exists in this attribute context
+			if posToken := attrCtx.POSICION(); posToken != nil {
+				switch posToken.GetText() {
+				case "centrada":
+					align = "center"
+				case "derecha":
+					align = "right"
+				}
+				// Assuming only one position attribute per paragraph
+				break
 			}
+			// Could add checks for attrCtx.ATTR_VAL() here if needed for Id or Clase
 		}
 		l.html.WriteString("<p style='text-align: " + align + ";'>")
-	}
-}
-
-func (l *HTMLListener) ExitFormato(ctx *parser.FormatoContext) {
-	var formatoTagToken antlr.Token
-	if tn, ok := ctx.GetChild(0).(antlr.TerminalNode); ok {
-		formatoTagToken = tn.GetSymbol()
-	} else {
-		// Este caso es menos probable si EnterFormato funcionó, pero por completitud.
-		log.Println("Advertencia: No se pudo determinar el tipo de formato al salir.")
-		return
-	}
-
-	if formatoTagToken.GetText() == "Sangrado" {
-		l.html.WriteString("</div>\n")
-	} else { // Parrafo
+		// Get text from the 'contenido' rule
+		if ctx.Contenido() != nil {
+			l.html.WriteString(ctx.Contenido().GetText())
+		} else {
+			log.Println("Advertencia: Párrafo sin contenido")
+		}
 		l.html.WriteString("</p>\n")
 	}
 }
 
-// ------ Lista ------
 func (l *HTMLListener) EnterLista(ctx *parser.ListaContext) {
 	l.html.WriteString("<ul>\n")
 }
@@ -191,37 +136,51 @@ func (l *HTMLListener) ExitLista(ctx *parser.ListaContext) {
 }
 
 func (l *HTMLListener) EnterElementoLista(ctx *parser.ElementoListaContext) {
-	l.html.WriteString("<li>")
-	// El texto del ElementoLista será manejado por EnterTexto
+	// Get text from the 'contenido' rule
+	if ctx.Contenido() != nil {
+		l.html.WriteString("<li>" + stripQuotes(ctx.Contenido().GetText()) + "</li>\n")
+	} else {
+		log.Println("Advertencia: ElementoLista sin contenido")
+		l.html.WriteString("<li></li>\n")
+	}
 }
 
-func (l *HTMLListener) ExitElementoLista(ctx *parser.ElementoListaContext) {
-	l.html.WriteString("</li>\n")
-}
-
-// ------ Enlace ------
 func (l *HTMLListener) EnterEnlace(ctx *parser.EnlaceContext) {
-	textoContexts := ctx.AllTexto() // []parser.ITextoContext
+	// The URL is the ATTR_VAL token after 'Con'
+	urlToken := ctx.ATTR_VAL()
+	if urlToken == nil {
+		log.Println("Advertencia: Enlace sin URL")
+		// Attempt to get content even without URL to avoid losing text
+		if ctx.Contenido() != nil {
+			l.html.WriteString(stripQuotes(ctx.Contenido().GetText()))
+		}
+		return
+	}
+	url := strings.Trim(urlToken.GetText(), `"`) // Remove quotes from ATTR_VAL
 
-	if len(textoContexts) < 2 {
-		log.Println("Advertencia: Enlace mal formado, no hay suficientes 'texto' para URL y display.")
-		l.html.WriteString("")
+	// The link text is the 'contenido' rule after 'Mostrar'
+	linkContent := ctx.Contenido()
+	if linkContent == nil {
+		log.Println("Advertencia: Enlace sin contenido")
+		l.html.WriteString("<a href='" + url + "'></a>") // Create link with empty text
 		return
 	}
 
-	url := l.reconstructTextFromContext(textoContexts[0])
-	txt := l.reconstructTextFromContext(textoContexts[1])
-
-	l.html.WriteString("<a href='" + url + "'>" + txt + "</a>")
+	l.html.WriteString("<a href='" + url + "'>")
+	// Get text from the 'contenido' rule
+	l.html.WriteString(linkContent.GetText())
+	l.html.WriteString("</a>")
 }
 
-// ------ Singleton ------
 func (l *HTMLListener) EnterSingleton(ctx *parser.SingletonContext) {
-	// GetStart() aquí es el token 'Linea' o 'Salto'
 	switch ctx.GetStart().GetText() {
 	case "Linea":
 		l.html.WriteString("<hr/>\n")
 	case "Salto":
 		l.html.WriteString("<br/>\n")
 	}
+}
+
+func stripQuotes(s string) string {
+	return strings.Trim(s, `"`)
 }
