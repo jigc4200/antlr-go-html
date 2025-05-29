@@ -48,28 +48,48 @@ La sintaxis del lenguaje L5 está definida en el archivo de gramática [`parser/
 ```l5
 Pagina
     Cabecera
-        Titulo
-            Mi Título de Página
-        FinTitulo
+        Titulo "Mi Página Web Personal" FinTitulo
     FinCabecera
     Cuerpo
+        Encabezado "1" "Bienvenido a mi sitio web" FinEncabezado
+        
         Parrafo
-            Negrita
-                Texto en negrita.
-            FinNegrita
-            Cursiva
-                Texto en cursiva.
-            FinCursiva
+            Posicion centrada FinPosicion
+            "Este es un " Negrita "ejemplo completo" FinNegrita " de lo que se puede hacer con esta gramática."
         FinParrafo
+        
         Linea
+        
+        Parrafo
+            "Texto con " Cursiva "énfasis" FinCursiva " y " Subrayado "formatos especiales" FinSubrayado "."
+        FinParrafo
+        
+        Lista
+            ElementoLista "Primer elemento de lista" FinElementoLista
+            ElementoLista
+                Negrita "Segundo elemento" FinNegrita
+                " con formato"
+            FinElementoLista
+            ElementoLista
+                Enlace
+                    Con "https:www.google.com" FinCon
+                    Mostrar "Enlace de ejemplo" FinMostrar
+                FinEnlace
+            FinElementoLista
+        FinLista
+        
         Imagen
-            Src "ruta/a/imagen.jpg" FinSrc
-            Alt "Descripción de la imagen" FinAlt
+            Src "/home/jigc4200/Pictures/imagen1.png" FinSrc
+            Alt "Una imagen descriptiva" FinAlt
         FinImagen
+        
+        Salto
+        
+        Parrafo
+            Tamaño "2" "Texto con tamaño modificado" FinTamaño
+        FinParrafo
     FinCuerpo
-    Ppagina
-        Pie de página
-    FPpagina
+    Ppagina "© 2023 - Todos los derechos reservados" Fppagina
 FinPagina
 ```
 
