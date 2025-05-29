@@ -11,7 +11,7 @@ pie          : PPAGINA contenido FPPAGINA ;
 elemento
     : estilo
     | formato
-    | lista
+    | lista 
     | enlace
     | singleton
     | imagen
@@ -45,6 +45,7 @@ lista
 
 elementoLista
     : ELEMENTOLISTA contenido FINELEMENTOLISTA
+    | ELEMENTOLISTA (elemento)+ FINELEMENTOLISTA  // Nueva regla alternativa
     ;
 
 enlace
@@ -70,9 +71,13 @@ singleton
     | SALTO
     ;
 
-contenido
+
+
+/*contenido
     : (ATTR_VAL| elemento | estilo )+
     ;
+*/
+contenido : (ATTR_VAL | estilo)* ; 
 
 // === Tokens ===
 
@@ -86,7 +91,7 @@ CUERPO          : 'Cuerpo' ;
 FINCUERPO       : 'FinCuerpo' ;
 PPAGINA         : 'Ppagina' ;
 FPPAGINA        : 'FPpagina' ;
-FINPAGINA       : 'FinPagina' ; // Added missing token definition
+FINPAGINA       : 'FinPagina' ; 
 NEGRITA         : 'Negrita' ;
 FINNEGRITA      : 'FinNegrita' ;
 CURSIVA         : 'Cursiva' ;
@@ -105,7 +110,7 @@ SANGRADO        : 'Sangrado' ;
 FINSANGRADO     : 'FinSangrado' ;
 PARRAFO         : 'Parrafo' ;
 FINPARRAFO      : 'FinParrafo' ;
-POSICION_KW     : 'Posicion' ; // Renombrado para evitar conflicto con token POSICION
+POSICION_KW     : 'Posicion' ; 
 FINPOSICION     : 'FinPosicion' ;
 ID              : 'Id' ;
 FINID           : 'FinId' ;

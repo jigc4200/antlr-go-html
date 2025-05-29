@@ -1,37 +1,45 @@
 Pagina
     Cabecera
-        Titulo "Bienvenido a la Página de Prueba Avanzada" FinTitulo
-     
+        Titulo "Mi Página Web Personal" FinTitulo
     FinCabecera
-    
     Cuerpo
-        Parrafo Posicion centrada FinPosicion "Este párrafo está centrado y contiene estilos mezclados:" FinParrafo
-        Salto
-        Negrita "Texto negrita dentro del cuerpo" FinNegrita
-        Salto
-        Cursiva "Texto en cursiva para enfatizar" FinCursiva
-        Salto
-        Subrayado "Texto subrayado y importante" FinSubrayado
+        Encabezado "1" "Bienvenido a mi sitio web" FinEncabezado
+        
+        Parrafo
+            Posicion centrada FinPosicion
+            "Este es un " Negrita "ejemplo completo" FinNegrita " de lo que se puede hacer con esta gramática."
+        FinParrafo
+        
+        Linea
+        
+        Parrafo
+            "Texto con " Cursiva "énfasis" FinCursiva " y " Subrayado "formatos especiales" FinSubrayado "."
+        FinParrafo
+        
         Lista
-            ElementoLista "Primer ítem con Negrita y Cursiva" 
-                Negrita "Negrita interna" FinNegrita
-                Cursiva "Cursiva interna" FinCursiva
+            ElementoLista "Primer elemento de lista" FinElementoLista
+            ElementoLista
+                Negrita "Segundo elemento" FinNegrita
+                " con formato"
             FinElementoLista
-            ElementoLista "Segundo ítem con enlace"
+            ElementoLista
                 Enlace
-                    Con "https://example.com" FinCon
-                    Mostrar "Enlace Ejemplo" FinMostrar
+                    Con "https:www.google.com" FinCon
+                    Mostrar "Enlace de ejemplo" FinMostrar
                 FinEnlace
             FinElementoLista
-            ElementoLista "Tercer ítem con subíndice y superíndice"
-                Subindice "subtexto" FinSubindice
-                Superindice "suptexto" FinSuperindice
-            FinElementoLista
         FinLista
+        
+        Imagen
+            Src "/home/jigc4200/Pictures/imagen1.png" FinSrc
+            Alt "Una imagen descriptiva" FinAlt
+        FinImagen
+        
         Salto
-        Parrafo Posicion derecha FinPosicion "Párrafo alineado a la derecha con línea debajo." FinParrafo
-        Linea
-        Salto
+        
+        Parrafo
+            Tamaño "2" "Texto con tamaño modificado" FinTamaño
+        FinParrafo
     FinCuerpo
-    Ppagina "© 2025 Mi Sitio Web - Todos los derechos reservados" FPpagina
+    Ppagina "© 2023 - Todos los derechos reservados" Fppagina
 FinPagina
